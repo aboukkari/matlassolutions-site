@@ -6,13 +6,22 @@
   <title>Matlas Solutions - IT & Engineering Services</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="https://via.placeholder.com/32" type="image/png">
+  <style>
+    html {
+      scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Top anchor for scrolling -->
+  <div id="top"></div>
 
   <!-- Header / Navigation -->
   <header class="bg-white shadow fixed w-full z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-      <div class="text-xl font-bold text-blue-800">Matlas Solutions</div>
+      <!-- Updated: logo is now clickable to scroll to top -->
+      <a href="#top" class="text-xl font-bold text-blue-800">Matlas Solutions</a>
       <nav class="space-x-6">
         <a href="#about" class="hover:text-blue-600">About</a>
         <a href="#services" class="hover:text-blue-600">Services</a>
