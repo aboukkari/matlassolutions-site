@@ -18,23 +18,20 @@
   <div id="top"></div>
 
   <!-- Header / Navigation -->
-<header class="bg-white shadow fixed w-full z-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-    <!-- Logo instead of text -->
-    <a href="#top" class="flex items-center">
-      <img src="logoo.png" alt="Matlas Solutions Logo" class="h-10 w-auto">
-    </a>
-    <nav class="space-x-6">
-      <a href="#about" class="hover:text-blue-600">About</a>
-      <a href="#services" class="hover:text-blue-600">Services</a>
-      <a href="#capabilities" class="hover:text-blue-600">Capabilities</a>
-      <a href="#contact" class="hover:text-blue-600">Contact</a>
-    </nav>
-  </div>
-</header>
-
-
-
+  <header class="bg-white shadow fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <!-- Logo instead of text -->
+      <a href="#top" class="nav-link flex items-center">
+        <img src="logoo.png" alt="Matlas Solutions Logo" class="h-10 w-auto">
+      </a>
+      <nav class="space-x-6">
+        <a href="#about" class="nav-link hover:text-blue-600">About</a>
+        <a href="#services" class="nav-link hover:text-blue-600">Services</a>
+        <a href="#capabilities" class="nav-link hover:text-blue-600">Capabilities</a>
+        <a href="#contact" class="nav-link hover:text-blue-600">Contact</a>
+      </nav>
+    </div>
+  </header>
 
   <!-- Hero Section -->
   <section class="bg-blue-800 text-white h-screen flex flex-col justify-center items-center text-center px-4" id="hero">
@@ -42,7 +39,7 @@
     <p class="text-lg sm:text-xl max-w-2xl mb-6">
       Matlas Solutions provides expert staffing and technical support to help agencies and organizations achieve mission success.
     </p>
-    <a href="#contact" class="bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition">Contact Us</a>
+    <a href="#contact" class="nav-link bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition">Contact Us</a>
   </section>
 
   <!-- About Us -->
@@ -92,7 +89,7 @@
     <p class="text-center mb-6">📧 <a href="mailto:ayoub.boukkari@matlassolutions.com" class="underline hover:text-gray-200">ayoub.boukkari@matlassolutions.com</a></p>
     <p class="text-center mb-6">📞 (XXX) XXX-XXXX</p>
     <div class="flex justify-center">
-      <a href="mailto:ayoub.boukkari@matlassolutions.com" class="bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition">Send Email</a>
+      <a href="mailto:ayoub.boukkari@matlassolutions.com" class="nav-link bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition">Send Email</a>
     </div>
   </section>
 
@@ -100,6 +97,20 @@
   <footer class="bg-gray-900 text-gray-400 py-6 text-center">
     &copy; 2025 Matlas LLC. All rights reserved.
   </footer>
+
+  <!-- Smooth scroll JS -->
+  <script>
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default anchor behavior
+        const targetID = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetID);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
