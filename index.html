@@ -5,247 +5,232 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matlas Solutions - IT & Engineering Services</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; }
-
-    /* Fade and slide animations */
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .fade-in.show { opacity: 1; transform: translateY(0); }
-    .slide-left { opacity: 0; transform: translateX(-20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .slide-left.show { opacity: 1; transform: translateX(0); }
-    .slide-right { opacity: 0; transform: translateX(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .slide-right.show { opacity: 1; transform: translateX(0); }
-
-    /* Hero animated shapes */
-    .hero-shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.1;
-      animation: float 10s infinite ease-in-out alternate;
+    html {
+      scroll-behavior: smooth;
     }
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); }
-      50% { transform: translateY(-20px) translateX(10px); }
-      100% { transform: translateY(0) translateX(0); }
-    }
+
+    /* Fade & Slide animations */
+    .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 1s ease forwards; }
+    @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+    .slide-left { opacity: 0; transform: translateX(-40px); animation: slideLeft 1s ease forwards; }
+    @keyframes slideLeft { to { opacity: 1; transform: translateX(0); } }
+
+    .slide-right { opacity: 0; transform: translateX(40px); animation: slideRight 1s ease forwards; }
+    @keyframes slideRight { to { opacity: 1; transform: translateX(0); } }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 relative overflow-x-hidden">
 
-  <!-- Header -->
-  <header class="bg-white shadow fixed w-full z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-      <a href="#" id="logo" class="flex items-center">
-        <img src="logoo.png" alt="Matlas Solutions Logo" class="h-10 w-auto">
-      </a>
-      <nav class="hidden sm:flex space-x-6">
-        <a href="#about" class="nav-link hover:text-blue-600">About</a>
-        <a href="#services" class="nav-link hover:text-blue-600">Services</a>
-        <a href="#capabilities" class="nav-link hover:text-blue-600">Capabilities</a>
-        <a href="#contact" class="nav-link hover:text-blue-600">Contact</a>
-      </nav>
-      <div class="sm:hidden">
-        <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-    <!-- Mobile Menu -->
-    <nav id="mobile-menu" class="hidden sm:hidden bg-white shadow absolute w-full left-0 top-16 flex flex-col space-y-2 p-4">
-      <a href="#about" class="nav-link hover:text-blue-600">About</a>
-      <a href="#services" class="nav-link hover:text-blue-600">Services</a>
-      <a href="#capabilities" class="nav-link hover:text-blue-600">Capabilities</a>
-      <a href="#contact" class="nav-link hover:text-blue-600">Contact</a>
+<!-- Header -->
+<header class="bg-white shadow fixed w-full z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+
+    <!-- Logo (no # in URL) -->
+    <img src="logoo.png" class="h-10 w-auto cursor-pointer" id="logoClick">
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex space-x-6">
+      <a href="#about" class="hover:text-blue-600 nav-link">About</a>
+      <a href="#services" class="hover:text-blue-600 nav-link">Services</a>
+      <a href="#capabilities" class="hover:text-blue-600 nav-link">Capabilities</a>
+      <a href="#contact" class="hover:text-blue-600 nav-link">Contact</a>
     </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="relative bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 text-white h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden">
-    <!-- Animated shapes -->
-    <div class="hero-shape w-48 h-48 bg-white rounded-full" style="top:10%; left:5%;"></div>
-    <div class="hero-shape w-64 h-64 bg-white rounded-full" style="top:30%; right:10%; animation-duration:12s;"></div>
-    <div class="hero-shape w-32 h-32 bg-white rounded-full" style="bottom:10%; left:40%; animation-duration:8s;"></div>
+    <!-- Mobile Hamburger -->
+    <button id="menuBtn" class="md:hidden focus:outline-none">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
 
-    <h1 class="text-4xl sm:text-5xl font-bold mb-4 fade-in">Delivering Reliable IT & Engineering Solutions</h1>
-    <p class="text-lg sm:text-xl max-w-2xl mb-6 fade-in" style="transition-delay:0.2s;">
-      Matlas Solutions provides expert staffing and technical support to help agencies and organizations achieve mission success.
-    </p>
-    <a href="#contact" class="nav-link bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition transform hover:scale-105 fade-in" style="transition-delay:0.4s;">Contact Us</a>
-  </section>
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden bg-white shadow-md md:hidden p-4 space-y-3">
+    <a href="#about" class="block nav-link">About</a>
+    <a href="#services" class="block nav-link">Services</a>
+    <a href="#capabilities" class="block nav-link">Capabilities</a>
+    <a href="#contact" class="block nav-link">Contact</a>
+  </div>
+</header>
 
-  <!-- About Us -->
-  <section class="max-w-4xl mx-auto py-20 px-4" id="about">
-    <h2 class="text-3xl font-bold text-center mb-6 fade-in">About Us</h2>
-    <p class="text-center text-gray-700 fade-in" style="transition-delay:0.2s;">
-      Matlas Solutions is a Virginia-based technology and engineering services firm specializing in IT support, systems integration, and technical staffing. Our mission is to empower our clients with innovative, dependable, and cost-effective solutions that meet the highest standards of performance and compliance.
-      <br><br>
-      We are registered in SAM.gov and pursue contracts across the federal, state, and local sectors.
-    </p>
-  </section>
+<!-- Spacer for fixed header -->
+<div class="h-16"></div>
 
-  <!-- Services -->
-  <section class="bg-gray-100 py-20 px-4" id="services">
-    <h2 class="text-3xl font-bold text-center mb-12 fade-in">Our Services</h2>
-    <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- IT Support -->
-      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 slide-left">
-        <div class="flex justify-center mb-4">
-          <!-- Computer/Network Icon -->
-          <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M9 17v-2a4 4 0 014-4h0a4 4 0 014 4v2m-8 0h8M4 6h16v4H4V6z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-semibold mb-2 text-center">IT Support & Infrastructure Management</h3>
-        <p class="text-center">Desktop support, network management, and cybersecurity readiness for government clients.</p>
+<!-- Hero -->
+<section class="bg-blue-800 text-white h-screen flex flex-col justify-center items-center text-center px-4">
+  <h1 class="text-4xl sm:text-5xl font-bold mb-4 fade-in">Reliable IT & Engineering Solutions</h1>
+  <p class="text-lg sm:text-xl max-w-2xl mb-6 fade-in">Supporting agencies and organizations with mission-critical technology and engineering expertise.</p>
+  <button onclick="smoothScroll('contact')" class="bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition">Contact Us</button>
+</section>
+
+<!-- About -->
+<section id="about" class="max-w-4xl mx-auto py-20 px-4">
+  <h2 class="text-3xl font-bold text-center mb-6 fade-in">About Us</h2>
+  <p class="text-center text-gray-700 fade-in">
+    Matlas Solutions is a Virginia-based technology and engineering services firm specializing in IT support, systems integration, and technical staffing.
+    We deliver innovative, dependable, and cost-effective solutions for federal, state, and local clients.
+  </p>
+</section>
+
+<!-- Services -->
+<section id="services" class="bg-gray-100 py-20 px-4">
+  <h2 class="text-3xl font-bold text-center mb-12 fade-in">Our Services</h2>
+
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- IT Support -->
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transform hover:scale-105 transition slide-left">
+      <div class="flex justify-center mb-4">
+        <svg class="w-14 h-14 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            d="M3 7h18v9H3zM8 21h8M12 17v4"/>
+        </svg>
       </div>
-      <!-- Engineering -->
-      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 slide-right">
-        <div class="flex justify-center mb-4">
-          <!-- Gear Icon -->
-          <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3-.895 3-2-1.343-2-3-2zm0 0V4m0 16v-4m4-4h4m-16 0H4m12.364-6.364l2.828-2.828m-14.142 0l2.828 2.828m12.728 12.728l2.828 2.828m-14.142 0l2.828-2.828"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-semibold mb-2 text-center">Engineering Solutions</h3>
-        <p class="text-center">Systems design, maintenance, and technical documentation for projects of all sizes.</p>
-      </div>
-      <!-- Staffing -->
-      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 slide-left">
-        <div class="flex justify-center mb-4">
-          <!-- Team Icon -->
-          <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M16 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-semibold mb-2 text-center">Staffing & Workforce Support</h3>
-        <p class="text-center">Providing skilled professionals for short and long-term IT and engineering projects.</p>
-      </div>
+      <h3 class="text-xl font-semibold mb-2 text-center">IT Support & Infrastructure</h3>
+      <p class="text-center">Network, desktop, cybersecurity, and full-scale IT support operations.</p>
     </div>
-  </section>
 
-  <!-- Capabilities Section -->
-  <section class="max-w-4xl mx-auto py-20 px-4" id="capabilities">
-    <h2 class="text-3xl font-bold text-center mb-6 fade-in">Capabilities & Certifications</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
-      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
-        <span class="text-green-600 text-xl">✅</span>
-        <span>SAM Registered (UEI, CAGE, DUNS)</span>
+    <!-- Engineering -->
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transform hover:scale-105 transition slide-right">
+      <div class="flex justify-center mb-4">
+        <svg class="w-14 h-14 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            d="M9.75 3l-.75 2.25L6.75 6l2.25.75.75 2.25.75-2.25L12.75 6 10.5 5.25 9.75 3zM19.5 9l-.75 2.25L16.5 12l2.25.75.75 2.25.75-2.25L22.5 12l-2.25-.75L19.5 9zM9 14.25l-.75 2.25L6 17.25l2.25.75L9 20.25l.75-2.25L12 17.25l-2.25-.75L9 14.25z"/>
+        </svg>
       </div>
-      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
-        <span class="text-green-600 text-xl">✅</span>
-        <span>NAICS Codes: 541512, 541513, 541330, 561320</span>
-      </div>
-      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
-        <span class="text-green-600 text-xl">✅</span>
-        <span>Small Business (pending certifications)</span>
-      </div>
-      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
-        <span class="text-green-600 text-xl">✅</span>
-        <span>Fully insured and compliant with federal contracting standards</span>
-      </div>
+      <h3 class="text-xl font-semibold mb-2 text-center">Engineering Solutions</h3>
+      <p class="text-center">Systems engineering, maintenance, technical documentation, and project support.</p>
     </div>
-  </section>
 
-  <!-- Contact Section -->
-  <section class="bg-blue-800 text-white py-20 px-4" id="contact">
-    <h2 class="text-3xl font-bold text-center mb-6 fade-in">Contact Us</h2>
-    <p class="text-center mb-6 fade-in">📍 Serving clients in Northern Virginia & the DC Metro Area</p>
-    <p class="text-center mb-6 fade-in">📧 <a href="mailto:ayoub.boukkari@matlassolutions.com" class="underline hover:text-gray-200">ayoub.boukkari@matlassolutions.com</a></p>
-    <p class="text-center mb-6 fade-in">📞 (XXX) XXX-XXXX</p>
-
-    <div class="max-w-md mx-auto fade-in">
-      <form class="bg-white p-6 rounded shadow space-y-4">
-        <input type="text" placeholder="Name" class="w-full p-2 border border-gray-300 rounded">
-        <input type="email" placeholder="Email" class="w-full p-2 border border-gray-300 rounded">
-        <textarea placeholder="Message" class="w-full p-2 border border-gray-300 rounded"></textarea>
-        <button type="submit" class="bg-blue-800 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition transform hover:scale-105 w-full">Send Message</button>
-      </form>
+    <!-- Staffing -->
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transform hover:scale-105 transition slide-left">
+      <div class="flex justify-center mb-4">
+        <svg class="w-14 h-14 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M12 4a4 4 0 110 8 4 4 0 010-8z"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2 text-center">Staffing & Workforce Support</h3>
+      <p class="text-center">Providing skilled IT and engineering professionals for agencies and contractors.</p>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 py-6">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
-      <div>
-        <h3 class="font-semibold mb-2 text-white">Quick Links</h3>
-        <ul>
-          <li><a href="#about" class="footer-link hover:text-white">About</a></li>
-          <li><a href="#services" class="footer-link hover:text-white">Services</a></li>
-          <li><a href="#capabilities" class="footer-link hover:text-white">Capabilities</a></li>
-          <li><a href="#contact" class="footer-link hover:text-white">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-semibold mb-2 text-white">Contact</h3>
-        <p>📧 ayoub.boukkari@matlassolutions.com</p>
-        <p>📞 (XXX) XXX-XXXX</p>
-      </div>
-      <div>
-        <h3 class="font-semibold mb-2 text-white">Certifications</h3>
-        <p>SAM Registered, Small Business</p>
-      </div>
+  </div>
+</section>
+
+<!-- Capabilities -->
+<section id="capabilities" class="max-w-4xl mx-auto py-20 px-4">
+  <h2 class="text-3xl font-bold text-center mb-6 fade-in">Capabilities & Certifications</h2>
+
+  <ul class="text-gray-700 text-center space-y-2 fade-in">
+    <li>✔ SAM Registered (UEI, CAGE)</li>
+    <li>✔ NAICS: 541512, 541513, 541330, 561320</li>
+    <li>✔ Small Business</li>
+    <li>✔ Fully insured and compliant</li>
+  </ul>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="bg-blue-800 text-white py-20 px-4">
+  <h2 class="text-3xl font-bold text-center mb-6 fade-in">Contact Us</h2>
+
+  <div class="max-w-lg mx-auto">
+
+    <!-- Contact Form -->
+    <form class="bg-white p-6 rounded shadow space-y-4">
+
+      <input type="text" placeholder="Name"
+        class="w-full p-2 border border-gray-300 rounded text-black placeholder-black">
+
+      <input type="email" placeholder="Email"
+        class="w-full p-2 border border-gray-300 rounded text-black placeholder-black">
+
+      <textarea placeholder="Message"
+        class="w-full p-2 border border-gray-300 rounded text-black placeholder-black h-32"></textarea>
+
+      <button type="submit"
+        class="w-full bg-blue-800 text-white py-2 rounded hover:bg-blue-700 transition">
+        Send Message
+      </button>
+    </form>
+
+    <p class="text-center mt-6">📧 ayoub.boukkari@matlassolutions.com</p>
+    <p class="text-center">📞 (571) 230-0527</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-400 py-10 px-4">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
+
+    <div>
+      <h3 class="text-lg font-semibold text-white mb-2">Quick Links</h3>
+      <ul class="space-y-1">
+        <li><a href="#about" class="footer-link hover:text-white">About</a></li>
+        <li><a href="#services" class="footer-link hover:text-white">Services</a></li>
+        <li><a href="#capabilities" class="footer-link hover:text-white">Capabilities</a></li>
+        <li><a href="#contact" class="footer-link hover:text-white">Contact</a></li>
+      </ul>
     </div>
-    <div class="text-center mt-4">&copy; 2025 Matlas LLC. All rights reserved.</div>
-  </footer>
 
-  <!-- Scripts -->
-  <script>
-    // Mobile menu toggle
-    const menuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+    <div>
+      <h3 class="text-lg font-semibold text-white mb-2">Contact</h3>
+      <p>Email: ayoub.boukkari@matlassolutions.com</p>
+      <p>Phone: (571) 230-0527</p>
+    </div>
 
-    // Smooth scroll for nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetID = this.getAttribute('href').substring(1);
-        const target = document.getElementById(targetID);
-        if(target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-          if(!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); }
-        }
-      });
-    });
+    <div>
+      <h3 class="text-lg font-semibold text-white mb-2">Certifications</h3>
+      <p>Small Business Certified</p>
+      <p>SAM Registered</p>
+    </div>
 
-    // Smooth scroll for footer links
-    document.querySelectorAll('.footer-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetID = this.getAttribute('href').substring(1);
-        const target = document.getElementById(targetID);
-        if(target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
+  </div>
 
-    // Logo scroll to top
-    const logo = document.getElementById('logo');
-    logo.addEventListener('click', function(e) {
+  <p class="text-center text-gray-500 mt-8">&copy; 2025 Matlas LLC. All rights reserved.</p>
+</footer>
+
+<!-- JS -->
+<script>
+  // Smooth scroll without changing URL
+  function smoothScroll(sectionID) {
+    document.getElementById(sectionID).scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Logo scroll to top without #
+  document.getElementById("logoClick").addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Desktop nav smooth scroll
+  document.querySelectorAll(".nav-link").forEach(link => {
+    link.addEventListener("click", e => {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const target = link.getAttribute("href").substring(1);
+      smoothScroll(target);
     });
+  });
 
-    // Scroll reveal animations
-    const faders = document.querySelectorAll('.fade-in, .slide-left, .slide-right');
-    const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) { entry.target.classList.add('show'); observer.unobserve(entry.target); }
-      });
-    }, appearOptions);
-    faders.forEach(fader => { appearOnScroll.observe(fader); });
-  </script>
+  // Footer smooth scroll
+  document.querySelectorAll(".footer-link").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const target = link.getAttribute("href").substring(1);
+      smoothScroll(target);
+    });
+  });
+
+  // Mobile menu
+  const menuBtn = document.getElementById("menuBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("hidden");
+  });
+</script>
 
 </body>
 </html>
