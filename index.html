@@ -8,20 +8,18 @@
   <link rel="icon" href="https://via.placeholder.com/32" type="image/png">
   <style>
     html {
-      scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+      scroll-behavior: smooth;
     }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
-  <!-- Top anchor for scrolling -->
-  <div id="top"></div>
-
   <!-- Header / Navigation -->
   <header class="bg-white shadow fixed w-full z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      
       <!-- Logo -->
-      <a href="#top" class="flex items-center">
+      <a href="#" id="logo" class="flex items-center">
         <img src="logoo.png" alt="Matlas Solutions Logo" class="h-10 w-auto">
       </a>
 
@@ -121,13 +119,14 @@
 
   <!-- Smooth scroll & mobile menu toggle JS -->
   <script>
+    // Mobile menu toggle
     const menuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-
     menuButton.addEventListener('click', () => {
       mobileMenu.classList.toggle('hidden');
     });
 
+    // Smooth scroll for nav links
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -135,12 +134,18 @@
         const target = document.getElementById(targetID);
         if(target) {
           target.scrollIntoView({ behavior: 'smooth' });
-          // Close mobile menu after clicking a link
           if(!mobileMenu.classList.contains('hidden')) {
             mobileMenu.classList.add('hidden');
           }
         }
       });
+    });
+
+    // Smooth scroll for logo without changing URL
+    const logo = document.getElementById('logo');
+    logo.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 
