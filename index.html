@@ -5,24 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matlas Solutions - IT & Engineering Services</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="https://via.placeholder.com/32" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .fade-in.show { opacity: 1; transform: translateY(0); }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-50 text-gray-800">
 
-  <!-- Header / Navigation -->
+  <!-- Header -->
   <header class="bg-white shadow fixed w-full z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-      
-      <!-- Logo -->
       <a href="#" id="logo" class="flex items-center">
         <img src="logoo.png" alt="Matlas Solutions Logo" class="h-10 w-auto">
       </a>
-
       <!-- Desktop Nav -->
       <nav class="hidden sm:flex space-x-6">
         <a href="#about" class="nav-link hover:text-blue-600">About</a>
@@ -30,7 +28,6 @@
         <a href="#capabilities" class="nav-link hover:text-blue-600">Capabilities</a>
         <a href="#contact" class="nav-link hover:text-blue-600">Contact</a>
       </nav>
-
       <!-- Mobile Hamburger -->
       <div class="sm:hidden">
         <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
@@ -53,19 +50,19 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="bg-blue-800 text-white h-screen flex flex-col justify-center items-center text-center px-4" id="hero">
-    <h1 class="text-4xl sm:text-5xl font-bold mb-4">Delivering Reliable IT & Engineering Solutions</h1>
-    <p class="text-lg sm:text-xl max-w-2xl mb-6">
+  <section class="bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 text-white h-screen flex flex-col justify-center items-center text-center px-4">
+    <h1 class="text-4xl sm:text-5xl font-bold mb-4 fade-in">Delivering Reliable IT & Engineering Solutions</h1>
+    <p class="text-lg sm:text-xl max-w-2xl mb-6 fade-in" style="transition-delay:0.2s;">
       Matlas Solutions provides expert staffing and technical support to help agencies and organizations achieve mission success.
     </p>
-    <a href="#contact" class="nav-link bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition">Contact Us</a>
+    <a href="#contact" class="nav-link bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition transform hover:scale-105 fade-in" style="transition-delay:0.4s;">Contact Us</a>
   </section>
 
   <!-- About Us -->
   <section class="max-w-4xl mx-auto py-20 px-4" id="about">
-    <h2 class="text-3xl font-bold text-center mb-6">About Us</h2>
-    <p class="text-center text-gray-700">
-      Matlas Solutions is a Virginia-based technology and engineering services firm specializing in IT support, systems integration, and technical staffing. Our mission is to empower our clients with innovative, dependable, and cost-effective solutions that meet the highest standards of performance and compliance.  
+    <h2 class="text-3xl font-bold text-center mb-6 fade-in">About Us</h2>
+    <p class="text-center text-gray-700 fade-in" style="transition-delay:0.2s;">
+      Matlas Solutions is a Virginia-based technology and engineering services firm specializing in IT support, systems integration, and technical staffing. Our mission is to empower our clients with innovative, dependable, and cost-effective solutions that meet the highest standards of performance and compliance.
       <br><br>
       We are registered in SAM.gov and pursue contracts across the federal, state, and local sectors.
     </p>
@@ -73,58 +70,110 @@
 
   <!-- Services -->
   <section class="bg-gray-100 py-20 px-4" id="services">
-    <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+    <h2 class="text-3xl font-bold text-center mb-12 fade-in">Our Services</h2>
     <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2">IT Support & Infrastructure Management</h3>
-        <p>Desktop support, network management, and cybersecurity readiness for government clients.</p>
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 fade-in">
+        <div class="flex justify-center mb-4">
+          <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h0a4 4 0 014 4v2m-8 0h8"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-center">IT Support & Infrastructure Management</h3>
+        <p class="text-center">Desktop support, network management, and cybersecurity readiness for government clients.</p>
       </div>
-      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2">Engineering Solutions</h3>
-        <p>Systems design, maintenance, and technical documentation for projects of all sizes.</p>
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 fade-in">
+        <div class="flex justify-center mb-4">
+          <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h0a4 4 0 014 4v2m-8 0h8"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-center">Engineering Solutions</h3>
+        <p class="text-center">Systems design, maintenance, and technical documentation for projects of all sizes.</p>
       </div>
-      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2">Staffing & Workforce Support</h3>
-        <p>Providing skilled professionals for short and long-term IT and engineering projects.</p>
+      <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 fade-in">
+        <div class="flex justify-center mb-4">
+          <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2a4 4 0 014-4h0a4 4 0 014 4v2m-8 0h8"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2 text-center">Staffing & Workforce Support</h3>
+        <p class="text-center">Providing skilled professionals for short and long-term IT and engineering projects.</p>
       </div>
     </div>
   </section>
 
   <!-- Capabilities / Certifications -->
   <section class="max-w-4xl mx-auto py-20 px-4" id="capabilities">
-    <h2 class="text-3xl font-bold text-center mb-6">Capabilities & Certifications</h2>
-    <ul class="text-gray-700 text-center space-y-2">
-      <li>✅ SAM Registered (UEI, CAGE, DUNS)</li>
-      <li>✅ NAICS Codes: 541512, 541513, 541330, 561320</li>
-      <li>✅ Small Business (pending certifications)</li>
-      <li>✅ Fully insured and compliant with federal contracting standards</li>
-    </ul>
+    <h2 class="text-3xl font-bold text-center mb-6 fade-in">Capabilities & Certifications</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
+        <span class="text-green-600 text-xl">✅</span>
+        <span>SAM Registered (UEI, CAGE, DUNS)</span>
+      </div>
+      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
+        <span class="text-green-600 text-xl">✅</span>
+        <span>NAICS Codes: 541512, 541513, 541330, 561320</span>
+      </div>
+      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
+        <span class="text-green-600 text-xl">✅</span>
+        <span>Small Business (pending certifications)</span>
+      </div>
+      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
+        <span class="text-green-600 text-xl">✅</span>
+        <span>Fully insured and compliant with federal contracting standards</span>
+      </div>
+    </div>
   </section>
 
-  <!-- Contact -->
+  <!-- Contact Section -->
   <section class="bg-blue-800 text-white py-20 px-4" id="contact">
-    <h2 class="text-3xl font-bold text-center mb-6">Contact Us</h2>
-    <p class="text-center mb-6">📍 Serving clients in Northern Virginia & the DC Metro Area</p>
-    <p class="text-center mb-6">📧 <a href="mailto:ayoub.boukkari@matlassolutions.com" class="underline hover:text-gray-200">ayoub.boukkari@matlassolutions.com</a></p>
-    <p class="text-center mb-6">📞 (XXX) XXX-XXXX</p>
-    <div class="flex justify-center">
-      <a href="mailto:ayoub.boukkari@matlassolutions.com" class="nav-link bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition">Send Email</a>
+    <h2 class="text-3xl font-bold text-center mb-6 fade-in">Contact Us</h2>
+    <p class="text-center mb-6 fade-in">📍 Serving clients in Northern Virginia & the DC Metro Area</p>
+    <p class="text-center mb-6 fade-in">📧 <a href="mailto:ayoub.boukkari@matlassolutions.com" class="underline hover:text-gray-200">ayoub.boukkari@matlassolutions.com</a></p>
+    <p class="text-center mb-6 fade-in">📞 (XXX) XXX-XXXX</p>
+
+    <!-- Contact Form -->
+    <div class="max-w-md mx-auto fade-in">
+      <form class="bg-white p-6 rounded shadow space-y-4">
+        <input type="text" placeholder="Name" class="w-full p-2 border border-gray-300 rounded">
+        <input type="email" placeholder="Email" class="w-full p-2 border border-gray-300 rounded">
+        <textarea placeholder="Message" class="w-full p-2 border border-gray-300 rounded"></textarea>
+        <button type="submit" class="bg-blue-800 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition transform hover:scale-105 w-full">Send Message</button>
+      </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 py-6 text-center">
-    &copy; 2025 Matlas LLC. All rights reserved.
+  <footer class="bg-gray-900 text-gray-400 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
+      <div>
+        <h3 class="font-semibold mb-2 text-white">Quick Links</h3>
+        <ul>
+          <li><a href="#about" class="hover:text-white">About</a></li>
+          <li><a href="#services" class="hover:text-white">Services</a></li>
+          <li><a href="#capabilities" class="hover:text-white">Capabilities</a></li>
+          <li><a href="#contact" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-2 text-white">Contact</h3>
+        <p>📧 ayoub.boukkari@matlassolutions.com</p>
+        <p>📞 (XXX) XXX-XXXX</p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-2 text-white">Certifications</h3>
+        <p>SAM Registered, Small Business</p>
+      </div>
+    </div>
+    <div class="text-center mt-4">&copy; 2025 Matlas LLC. All rights reserved.</div>
   </footer>
 
-  <!-- Smooth scroll & mobile menu toggle JS -->
+  <!-- Scripts -->
   <script>
     // Mobile menu toggle
     const menuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    menuButton.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+    menuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 
     // Smooth scroll for nav links
     document.querySelectorAll('.nav-link').forEach(link => {
@@ -134,19 +183,27 @@
         const target = document.getElementById(targetID);
         if(target) {
           target.scrollIntoView({ behavior: 'smooth' });
-          if(!mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('hidden');
-          }
+          if(!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); }
         }
       });
     });
 
-    // Smooth scroll for logo without changing URL
+    // Logo scroll to top
     const logo = document.getElementById('logo');
     logo.addEventListener('click', function(e) {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+
+    // Scroll reveal fade-in
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) { entry.target.classList.add('show'); observer.unobserve(entry.target); }
+      });
+    }, appearOptions);
+    faders.forEach(fader => { appearOnScroll.observe(fader); });
   </script>
 
 </body>
