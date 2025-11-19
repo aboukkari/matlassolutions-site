@@ -151,7 +151,7 @@
     </div>
   </section>
 
-  <!-- Contact Section (Formspree) -->
+  <!-- Contact Section -->
   <section class="bg-blue-800 text-white py-20 px-4" id="contact">
     <h2 class="text-3xl font-bold text-center mb-6 fade-in">Contact Us</h2>
     <p class="text-center mb-6 fade-in">📍 Serving clients in Northern Virginia & the DC Metro Area</p>
@@ -159,7 +159,7 @@
     <p class="text-center mb-6 fade-in">📞 (571) 230-0527</p>
 
     <div class="max-w-md mx-auto fade-in">
-      <form action="https://formspree.io/f/meonepaj" method="POST" class="bg-white p-6 rounded shadow space-y-4">
+      <form id="contact-form" class="bg-white p-6 rounded shadow space-y-4">
         <input type="text" name="name" placeholder="Name" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required>
         <input type="email" name="email" placeholder="Email" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required>
         <textarea name="message" placeholder="Message" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required></textarea>
@@ -235,10 +235,23 @@
     }, appearOptions);
     faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-    // Contact form success message
-    const form = document.querySelector('#contact form');
+    // Contact form submit using fetch to prevent redirect and clear form
+    const form = document.getElementById('contact-form');
     form.addEventListener('submit', function(e) {
-      setTimeout(() => { document.getElementById('success-msg').classList.remove('hidden'); }, 500);
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch('https://formspree.io/f/manvqaqj', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if(response.ok) {
+          document.getElementById('success-msg').classList.remove('hidden');
+          form.reset();
+        } else {
+          alert('Oops! There was a problem sending your message.');
+        }
+      }).catch(error => alert('Oops! There was a problem sending your message.'));
     });
   </script>
 
