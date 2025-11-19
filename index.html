@@ -110,11 +110,11 @@
     </p>
   </section>
 
-  <!-- Services -->
+ <!-- Services -->
 <section class="bg-gray-100 py-20 px-4" id="services">
   <h2 class="text-3xl font-bold text-center mb-12 fade-in">Our Services</h2>
   <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    
+
     <!-- IT Support -->
     <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 slide-left">
       <div class="flex justify-center mb-4">
@@ -153,6 +153,21 @@
 
   </div>
 </section>
+
+<!-- Animation Script -->
+<script>
+  const serviceCards = document.querySelectorAll('.slide-left, .slide-right');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  serviceCards.forEach(card => observer.observe(card));
+</script>
 
 
   <!-- Capabilities Section -->
