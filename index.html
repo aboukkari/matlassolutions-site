@@ -1,265 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matlas Solutions - IT & Engineering Services</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matlas Solutions - IT & Engineering Services</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; }
+  <!-- Smooth scroll and animation styles -->
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
 
-    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .fade-in.show { opacity: 1; transform: translateY(0); }
-    /* Keeping slide classes defined, although they are not used on the service boxes anymore for better staggering */
-    .slide-left { opacity: 0; transform: translateX(-20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .slide-left.show { opacity: 1; transform: translateX(0); }
-    .slide-right { opacity: 0; transform: translateX(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .slide-right.show { opacity: 1; transform: translateX(0); }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .fade-in.show { opacity: 1; transform: translateY(0); }
+    .slide-left { opacity: 0; transform: translateX(-20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .slide-left.show { opacity: 1; transform: translateX(0); }
+    .slide-right { opacity: 0; transform: translateX(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .slide-right.show { opacity: 1; transform: translateX(0); }
 
-    .hero-shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.1;
-      animation: float 10s infinite ease-in-out alternate;
-    }
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); }
-      50% { transform: translateY(-20px) translateX(10px); }
-      100% { transform: translateY(0) translateX(0); }
-    }
-  </style>
+    .hero-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 10s infinite ease-in-out alternate;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-20px) translateX(10px); }
+      100% { transform: translateY(0) translateX(0); }
+    }
+  </style>
 
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
 
-    <link rel="apple-touch-icon" sizes="120x120" href="favicon-120.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="favicon-152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+  <!-- Apple Touch Icons -->
+  <link rel="apple-touch-icon" sizes="120x120" href="favicon-120.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="favicon-152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
 
-    <link rel="mask-icon" href="favicon.svg" color="#1d4ed8">
+  <!-- Safari pinned tab -->
+  <link rel="mask-icon" href="favicon.svg" color="#1d4ed8">
 
-    <meta name="theme-color" content="#1d4ed8">
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#1d4ed8">
 </head>
 
 
 <body class="bg-gray-50 text-gray-800 relative overflow-x-hidden">
 
-    <header class="bg-white shadow fixed w-full z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
-      <a href="#" id="logo" class="flex items-center">
-        <img src="logoo.png" alt="Matlas Solutions Logo" class="h-10 w-auto">
-      </a>
-      <nav class="hidden sm:flex space-x-6">
-        <a href="#about" class="nav-link hover:text-blue-600">About</a>
-        <a href="#services" class="nav-link hover:text-blue-600">Services</a>
-        <a href="#capabilities" class="nav-link hover:text-blue-600">Capabilities</a>
-        <a href="#contact" class="nav-link hover:text-blue-600">Contact</a>
-      </nav>
-      <div class="sm:hidden">
-        <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
+  <!-- Header -->
+  <header class="bg-white shadow fixed w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <a href="#" id="logo" class="flex items-center">
+        <img src="logoo.png" alt="Matlas Solutions Logo" class="h-10 w-auto">
+      </a>
+      <nav class="hidden sm:flex space-x-6">
+        <a href="#about" class="nav-link hover:text-blue-600">About</a>
+        <a href="#services" class="nav-link hover:text-blue-600">Services</a>
+        <a href="#capabilities" class="nav-link hover:text-blue-600">Capabilities</a>
+        <a href="#contact" class="nav-link hover:text-blue-600">Contact</a>
+      </nav>
+      <div class="sm:hidden">
+        <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
 
-        <nav id="mobile-menu" class="hidden sm:hidden bg-white shadow absolute w-full left-0 top-16 flex flex-col space-y-2 p-4">
-      <a href="#about" class="nav-link hover:text-blue-600">About</a>
-      <a href="#services" class="nav-link hover:text-blue-600">Services</a>
-      <a href="#capabilities" class="nav-link hover:text-blue-600">Capabilities</a>
-      <a href="#contact" class="nav-link hover:text-blue-600">Contact</a>
-    </nav>
-  </header>
+    <!-- Mobile Menu -->
+    <nav id="mobile-menu" class="hidden sm:hidden bg-white shadow absolute w-full left-0 top-16 flex flex-col space-y-2 p-4">
+      <a href="#about" class="nav-link hover:text-blue-600">About</a>
+      <a href="#services" class="nav-link hover:text-blue-600">Services</a>
+      <a href="#capabilities" class="nav-link hover:text-blue-600">Capabilities</a>
+      <a href="#contact" class="nav-link hover:text-blue-600">Contact</a>
+    </nav>
+  </header>
 
-    <section class="relative bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 text-white h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden">
-    <div class="hero-shape w-48 h-48 bg-white rounded-full" style="top:10%; left:5%;"></div>
-    <div class="hero-shape w-64 h-64 bg-white rounded-full" style="top:30%; right:10%; animation-duration:12s;"></div>
-    <div class="hero-shape w-32 h-32 bg-white rounded-full" style="bottom:10%; left:40%; animation-duration:8s;"></div>
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900 text-white h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden">
+    <div class="hero-shape w-48 h-48 bg-white rounded-full" style="top:10%; left:5%;"></div>
+    <div class="hero-shape w-64 h-64 bg-white rounded-full" style="top:30%; right:10%; animation-duration:12s;"></div>
+    <div class="hero-shape w-32 h-32 bg-white rounded-full" style="bottom:10%; left:40%; animation-duration:8s;"></div>
 
-    <h1 class="text-4xl sm:text-5xl font-bold mb-4 fade-in">Delivering Reliable IT & Engineering Solutions</h1>
-    <p class="text-lg sm:text-xl max-w-2xl mb-6 fade-in" style="transition-delay:0.2s;">
-      Matlas Solutions provides expert staffing and technical support to help agencies and organizations achieve mission success.
-    </p>
-    <a href="#contact" class="nav-link bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition transform hover:scale-105 fade-in" style="transition-delay:0.4s;">Contact Us</a>
-  </section>
+    <h1 class="text-4xl sm:text-5xl font-bold mb-4 fade-in">Delivering Reliable IT & Engineering Solutions</h1>
+    <p class="text-lg sm:text-xl max-w-2xl mb-6 fade-in" style="transition-delay:0.2s;">
+      Matlas Solutions provides expert staffing and technical support to help agencies and organizations achieve mission success.
+    </p>
+    <a href="#contact" class="nav-link bg-white text-blue-800 px-6 py-3 rounded font-semibold hover:bg-gray-200 transition transform hover:scale-105 fade-in" style="transition-delay:0.4s;">Contact Us</a>
+  </section>
 
-    <section class="max-w-4xl mx-auto py-20 px-4" id="about">
-    <h2 class="text-3xl font-bold text-center mb-6 fade-in">About Us</h2>
-    <p class="text-center text-gray-700 fade-in" style="transition-delay:0.2s;">
-      Matlas Solutions is a Virginia-based technology and engineering services firm specializing in IT support, systems integration, and technical staffing. Our mission is to empower our clients with innovative, dependable, and cost-effective solutions that meet the highest standards of performance and compliance.
-      <br><br>
-      We are registered in SAM.gov and pursue contracts across the federal, state, and local sectors.
-    </p>
-  </section>
+  <!-- About Us -->
+  <section class="max-w-4xl mx-auto py-20 px-4" id="about">
+    <h2 class="text-3xl font-bold text-center mb-6 fade-in">About Us</h2>
+    <p class="text-center text-gray-700 fade-in" style="transition-delay:0.2s;">
+      Matlas Solutions is a Virginia-based technology and engineering services firm specializing in IT support, systems integration, and technical staffing. Our mission is to empower our clients with innovative, dependable, and cost-effective solutions that meet the highest standards of performance and compliance.
+      <br><br>
+      We are registered in SAM.gov and pursue contracts across the federal, state, and local sectors.
+    </p>
+  </section>
 
-  <section class="bg-gray-100 py-20 px-4" id="services">
-  <h2 class="text-3xl font-bold text-center mb-12 fade-in">Our Services</h2>
-  <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    
-        <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 fade-in">
-      <div class="flex justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
-        </svg>
-      </div>
-      <h3 class="text-xl font-semibold mb-2 text-center">IT Support & Infrastructure Management</h3>
-      <p class="text-center">Desktop support, network management, and cybersecurity readiness for government clients.</p>
-    </div>
+  <!-- Services -->
+<section class="bg-gray-100 py-20 px-4" id="services">
+  <h2 class="text-3xl font-bold text-center mb-12 fade-in">Our Services</h2>
+  <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    
+    <!-- IT Support -->
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 slide-left">
+      <div class="flex justify-center mb-4">
+        <!-- IT Desktop Computer Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2 text-center">IT Support & Infrastructure Management</h3>
+      <p class="text-center">Desktop support, network management, and cybersecurity readiness for government clients.</p>
+    </div>
 
-        <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 fade-in" style="transition-delay:0.2s;">
-      <div class="flex justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
-        </svg>
-      </div>
-      <h3 class="text-xl font-semibold mb-2 text-center">Engineering Solutions</h3>
-      <p class="text-center">Systems design, maintenance, and technical documentation for projects of all sizes.</p>
-    </div>
+    <!-- Engineering -->
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 slide-right">
+      <div class="flex justify-center mb-4">
+        <!-- Engineering Cog Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2 text-center">Engineering Solutions</h3>
+      <p class="text-center">Systems design, maintenance, and technical documentation for projects of all sizes.</p>
+    </div>
 
-        <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 fade-in" style="transition-delay:0.4s;">
-      <div class="flex justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-        </svg>
-      </div>
-      <h3 class="text-xl font-semibold mb-2 text-center">Staffing & Workforce Support</h3>
-      <p class="text-center">Providing skilled professionals for short and long-term IT and engineering projects.</p>
-    </div>
+    <!-- Staffing -->
+    <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 slide-left">
+      <div class="flex justify-center mb-4">
+        <!-- Staffing User Group Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-blue-600">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-semibold mb-2 text-center">Staffing & Workforce Support</h3>
+      <p class="text-center">Providing skilled professionals for short and long-term IT and engineering projects.</p>
+    </div>
 
-  </div>
+  </div>
 </section>
 
 
-    <section class="max-w-4xl mx-auto py-20 px-4" id="capabilities">
-    <h2 class="text-3xl font-bold text-center mb-6 fade-in">Capabilities & Certifications</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
-      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
-        <span class="text-green-600 text-xl">✅</span>
-        <span>SAM Registered (UEI, CAGE, DUNS)</span>
-      </div>
-      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
-        <span class="text-green-600 text-xl">✅</span>
-        <span>NAICS Codes: 541512, 541513, 541330, 561320</span>
-      </div>
-      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
-        <span class="text-green-600 text-xl">✅</span>
-        <span>Small Business (pending certifications)</span>
-      </div>
-      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
-        <span class="text-green-600 text-xl">✅</span>
-        <span>Fully insured and compliant with federal contracting standards</span>
-      </div>
-    </div>
-  </section>
+  <!-- Capabilities Section -->
+  <section class="max-w-4xl mx-auto py-20 px-4" id="capabilities">
+    <h2 class="text-3xl font-bold text-center mb-6 fade-in">Capabilities & Certifications</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-xl mx-auto">
+      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
+        <span class="text-green-600 text-xl">✅</span>
+        <span>SAM Registered (UEI, CAGE, DUNS)</span>
+      </div>
+      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
+        <span class="text-green-600 text-xl">✅</span>
+        <span>NAICS Codes: 541512, 541513, 541330, 561320</span>
+      </div>
+      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
+        <span class="text-green-600 text-xl">✅</span>
+        <span>Small Business (pending certifications)</span>
+      </div>
+      <div class="bg-white p-4 rounded shadow flex items-center space-x-2 fade-in">
+        <span class="text-green-600 text-xl">✅</span>
+        <span>Fully insured and compliant with federal contracting standards</span>
+      </div>
+    </div>
+  </section>
 
-    <section class="bg-blue-800 text-white py-20 px-4" id="contact">
-    <h2 class="text-3xl font-bold text-center mb-6 fade-in">Contact Us</h2>
-    <p class="text-center mb-6 fade-in">📍 Serving clients in Northern Virginia & the DC Metro Area</p>
-    <p class="text-center mb-6 fade-in">📧 <a href="mailto:ayoub.boukkari@matlassolutions.com" class="underline hover:text-gray-200">ayoub.boukkari@matlassolutions.com</a></p>
-    <p class="text-center mb-6 fade-in">📞 (571) 230-0527</p>
+  <!-- Contact Section -->
+  <section class="bg-blue-800 text-white py-20 px-4" id="contact">
+    <h2 class="text-3xl font-bold text-center mb-6 fade-in">Contact Us</h2>
+    <p class="text-center mb-6 fade-in">📍 Serving clients in Northern Virginia & the DC Metro Area</p>
+    <p class="text-center mb-6 fade-in">📧 <a href="mailto:ayoub.boukkari@matlassolutions.com" class="underline hover:text-gray-200">ayoub.boukkari@matlassolutions.com</a></p>
+    <p class="text-center mb-6 fade-in">📞 (571) 230-0527</p>
 
-    <div class="max-w-md mx-auto fade-in">
-      <form id="contact-form" class="bg-white p-6 rounded shadow space-y-4">
-        <input type="text" name="name" placeholder="Name" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required>
-        <input type="email" name="email" placeholder="Email" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required>
-        <textarea name="message" placeholder="Message" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required></textarea>
-        <button type="submit" class="bg-blue-800 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition transform hover:scale-105 w-full">
-          Send Message
-        </button>
-        <p class="text-green-600 mt-2 hidden" id="success-msg">Thank you! Your message has been sent.</p>
-      </form>
-    </div>
-  </section>
+    <div class="max-w-md mx-auto fade-in">
+      <form id="contact-form" class="bg-white p-6 rounded shadow space-y-4">
+        <input type="text" name="name" placeholder="Name" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required>
+        <input type="email" name="email" placeholder="Email" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required>
+        <textarea name="message" placeholder="Message" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required></textarea>
+        <button type="submit" class="bg-blue-800 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition transform hover:scale-105 w-full">
+          Send Message
+        </button>
+        <p class="text-green-600 mt-2 hidden" id="success-msg">Thank you! Your message has been sent.</p>
+      </form>
+    </div>
+  </section>
 
-    <footer class="bg-gray-900 text-gray-400 py-6">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
-      <div>
-        <h3 class="font-semibold mb-2 text-white">Quick Links</h3>
-        <ul>
-          <li><a href="#about" class="footer-link hover:text-white">About</a></li>
-          <li><a href="#services" class="footer-link hover:text-white">Services</a></li>
-          <li><a href="#capabilities" class="footer-link hover:text-white">Capabilities</a></li>
-          <li><a href="#contact" class="footer-link hover:text-white">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-semibold mb-2 text-white">Contact</h3>
-        <p>📧 ayoub.boukkari@matlassolutions.com</p>
-        <p>📞 (571) 230-0527</p>
-      </div>
-      <div>
-        <h3 class="font-semibold mb-2 text-white">Certifications</h3>
-        <p>SAM Registered, Small Business</p>
-      </div>
-    </div>
-    <div class="text-center mt-4">&copy; 2025 Matlas LLC. All rights reserved.</div>
-  </footer>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center sm:text-left">
+      <div>
+        <h3 class="font-semibold mb-2 text-white">Quick Links</h3>
+        <ul>
+          <li><a href="#about" class="footer-link hover:text-white">About</a></li>
+          <li><a href="#services" class="footer-link hover:text-white">Services</a></li>
+          <li><a href="#capabilities" class="footer-link hover:text-white">Capabilities</a></li>
+          <li><a href="#contact" class="footer-link hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-2 text-white">Contact</h3>
+        <p>📧 ayoub.boukkari@matlassolutions.com</p>
+        <p>📞 (571) 230-0527</p>
+      </div>
+      <div>
+        <h3 class="font-semibold mb-2 text-white">Certifications</h3>
+        <p>SAM Registered, Small Business</p>
+      </div>
+    </div>
+    <div class="text-center mt-4">&copy; 2025 Matlas LLC. All rights reserved.</div>
+  </footer>
 
-    <script>
-    const menuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    menuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+  <!-- Scripts -->
+  <script>
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetID = this.getAttribute('href').substring(1);
-        const target = document.getElementById(targetID);
-        if(target) { target.scrollIntoView({ behavior: 'smooth' }); if(!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); } }
-      });
-    });
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetID = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetID);
+        if(target) { target.scrollIntoView({ behavior: 'smooth' }); if(!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); } }
+      });
+    });
 
-    document.querySelectorAll('.footer-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetID = this.getAttribute('href').substring(1);
-        const target = document.getElementById(targetID);
-        if(target) { target.scrollIntoView({ behavior: 'smooth' }); }
-      });
-    });
+    document.querySelectorAll('.footer-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetID = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetID);
+        if(target) { target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
 
-    const logo = document.getElementById('logo');
-    logo.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    const logo = document.getElementById('logo');
+    logo.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-    const faders = document.querySelectorAll('.fade-in, .slide-left, .slide-right');
-    const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) { entry.target.classList.add('show'); observer.unobserve(entry.target); }
-      });
-    }, appearOptions);
-    faders.forEach(fader => { appearOnScroll.observe(fader); });
+    const faders = document.querySelectorAll('.fade-in, .slide-left, .slide-right');
+    const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) { entry.target.classList.add('show'); observer.unobserve(entry.target); }
+      });
+    }, appearOptions);
+    faders.forEach(fader => { appearOnScroll.observe(fader); });
 
-    // Contact form submit using fetch to prevent redirect and clear form
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-      fetch('https://formspree.io/f/manvqaqj', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      }).then(response => {
-        if(response.ok) {
-          document.getElementById('success-msg').classList.remove('hidden');
-          form.reset();
-        } else {
-          alert('Oops! There was a problem sending your message.');
-        }
-      }).catch(error => alert('Oops! There was a problem sending your message.'));
-    });
-  </script>
+    // Contact form submit using fetch to prevent redirect and clear form
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch('https://formspree.io/f/manvqaqj', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if(response.ok) {
+          document.getElementById('success-msg').classList.remove('hidden');
+          form.reset();
+        } else {
+          alert('Oops! There was a problem sending your message.');
+        }
+      }).catch(error => alert('Oops! There was a problem sending your message.'));
+    });
+  </script>
 
 </body>
 </html>
