@@ -90,7 +90,6 @@
   <section class="bg-gray-100 py-20 px-4" id="services">
     <h2 class="text-3xl font-bold text-center mb-12 fade-in">Our Services</h2>
     <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      
       <!-- IT Support -->
       <div class="bg-white p-6 rounded shadow hover:shadow-lg transition transform hover:scale-105 slide-left">
         <div class="flex justify-center mb-4">
@@ -126,7 +125,6 @@
         <h3 class="text-xl font-semibold mb-2 text-center">Staffing & Workforce Support</h3>
         <p class="text-center">Providing skilled professionals for short and long-term IT and engineering projects.</p>
       </div>
-
     </div>
   </section>
 
@@ -153,7 +151,7 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact Section (Formspree) -->
   <section class="bg-blue-800 text-white py-20 px-4" id="contact">
     <h2 class="text-3xl font-bold text-center mb-6 fade-in">Contact Us</h2>
     <p class="text-center mb-6 fade-in">📍 Serving clients in Northern Virginia & the DC Metro Area</p>
@@ -161,11 +159,14 @@
     <p class="text-center mb-6 fade-in">📞 (571) 230-0527</p>
 
     <div class="max-w-md mx-auto fade-in">
-      <form class="bg-white p-6 rounded shadow space-y-4">
-        <input type="text" placeholder="Name" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500">
-        <input type="email" placeholder="Email" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500">
-        <textarea placeholder="Message" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500"></textarea>
-        <button type="submit" class="bg-blue-800 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition transform hover:scale-105 w-full">Send Message</button>
+      <form action="https://formspree.io/f/meonepaj" method="POST" class="bg-white p-6 rounded shadow space-y-4">
+        <input type="text" name="name" placeholder="Name" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required>
+        <input type="email" name="email" placeholder="Email" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required>
+        <textarea name="message" placeholder="Message" class="w-full p-2 border border-gray-300 rounded text-gray-800 placeholder-gray-500" required></textarea>
+        <button type="submit" class="bg-blue-800 text-white px-4 py-2 rounded font-semibold hover:bg-blue-700 transition transform hover:scale-105 w-full">
+          Send Message
+        </button>
+        <p class="text-green-600 mt-2 hidden" id="success-msg">Thank you! Your message has been sent.</p>
       </form>
     </div>
   </section>
@@ -206,10 +207,7 @@
         e.preventDefault();
         const targetID = this.getAttribute('href').substring(1);
         const target = document.getElementById(targetID);
-        if(target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-          if(!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); }
-        }
+        if(target) { target.scrollIntoView({ behavior: 'smooth' }); if(!mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); } }
       });
     });
 
@@ -218,9 +216,7 @@
         e.preventDefault();
         const targetID = this.getAttribute('href').substring(1);
         const target = document.getElementById(targetID);
-        if(target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+        if(target) { target.scrollIntoView({ behavior: 'smooth' }); }
       });
     });
 
@@ -238,6 +234,12 @@
       });
     }, appearOptions);
     faders.forEach(fader => { appearOnScroll.observe(fader); });
+
+    // Contact form success message
+    const form = document.querySelector('#contact form');
+    form.addEventListener('submit', function(e) {
+      setTimeout(() => { document.getElementById('success-msg').classList.remove('hidden'); }, 500);
+    });
   </script>
 
 </body>
