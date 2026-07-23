@@ -11,7 +11,6 @@
 <meta name="description" content="Matlas Solutions provides secure IT infrastructure, engineering services, cloud solutions, and technical staffing support for government and defense organizations.">
 
 <script src="https://cdn.tailwindcss.com"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -66,18 +65,105 @@ transform:translateX(0);
 }
 
 
-/* Futuristic Earth */
+/* Digital Earth */
 
-#earthCanvas {
+.globe {
 
-filter:
-drop-shadow(0 0 45px rgba(34,211,238,.8));
+width:520px;
+height:520px;
+
+border-radius:50%;
+
+position:relative;
+
+overflow:hidden;
+
+background-image:url("https://upload.wikimedia.org/wikipedia/commons/8/83/Earthmap1000x500compac.jpg");
+
+background-size:auto 100%;
+
+background-repeat:repeat-x;
+
+border:2px solid rgba(34,211,238,.5);
+
+box-shadow:
+
+0 0 80px rgba(34,211,238,.45),
+inset -60px -40px 100px rgba(0,0,0,.8);
+
+
+animation:earthRotate 35s linear infinite;
+
+}
+
+
+.globe:before {
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+
+background-image:
+
+linear-gradient(
+rgba(34,211,238,.18) 1px,
+transparent 1px
+),
+
+linear-gradient(
+90deg,
+rgba(34,211,238,.18) 1px,
+transparent 1px
+);
+
+
+background-size:35px 35px;
+
+mix-blend-mode:screen;
+
+}
+
+
+.globe:after {
+
+content:"";
+
+position:absolute;
+
+inset:-20px;
+
+border-radius:50%;
+
+box-shadow:
+
+0 0 60px rgba(34,211,238,.8);
 
 }
 
 
 
-/* Background Grid */
+@keyframes earthRotate {
+
+from {
+
+background-position:0 center;
+
+}
+
+to {
+
+background-position:1000px center;
+
+}
+
+}
+
+
+
+/* Background grid */
 
 .grid-bg {
 
@@ -111,7 +197,7 @@ background-size:60px 60px;
 </head>
 
 
-<body class="bg-[#F8FAFC] text-gray-800 overflow-x-hidden">
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
 
 
 <!-- HEADER -->
@@ -176,6 +262,8 @@ d="M4 6h16M4 12h16M4 18h16"/>
 
 
 </div>
+
+
 <nav id="mobile-menu"
 class="hidden sm:hidden bg-white shadow p-5 space-y-3">
 
@@ -206,10 +294,7 @@ Contact
 </header>
 
 
-
-
-
-<!-- HERO SECTION -->
+<!-- HERO -->
 
 <section class="relative h-screen flex items-center overflow-hidden bg-[#050816] text-white px-6">
 
@@ -217,30 +302,15 @@ Contact
 <div class="absolute inset-0 grid-bg"></div>
 
 
-
 <div class="absolute w-[700px] h-[700px] bg-cyan-400 opacity-10 blur-3xl rounded-full right-[-200px]">
-
 </div>
 
-
-
-
-<!-- DIGITAL EARTH -->
 
 <div class="absolute right-[-40px] top-1/2 -translate-y-1/2 hidden lg:block">
 
-
-<canvas id="earthCanvas"
-width="520"
-height="520">
-
-</canvas>
-
+<canvas id="earthCanvas" width="520" height="520"></canvas>
 
 </div>
-
-
-
 
 
 <div class="relative z-10 max-w-3xl">
@@ -253,42 +323,27 @@ IT • ENGINEERING • TECHNICAL STAFFING
 </div>
 
 
-
 <h1 class="text-5xl sm:text-6xl font-extrabold leading-tight fade-in">
-
 
 Mission-Critical IT Solutions
 
-
 <br>
 
-
 <span class="text-cyan-400">
-
 for Government & Defense
-
 </span>
-
 
 </h1>
 
 
-
-
-
 <p class="mt-6 text-xl text-gray-300 max-w-2xl fade-in">
-
 
 Matlas Solutions delivers secure technology services,
 enterprise infrastructure support, and technical staffing
 solutions that help government organizations achieve
 operational readiness and mission success.
 
-
 </p>
-
-
-
 
 
 <div class="mt-8 flex flex-wrap gap-4 fade-in">
@@ -302,8 +357,6 @@ Request Support
 </a>
 
 
-
-
 <a href="#capabilities"
 class="hero-link border border-cyan-400 px-8 py-3 rounded hover:bg-cyan-400 hover:text-black transition">
 
@@ -312,7 +365,6 @@ View Capabilities
 </a>
 
 
-
 </div>
 
 
@@ -320,58 +372,38 @@ View Capabilities
 
 
 </section>
-
-
-
-
-
 <!-- ABOUT SECTION -->
-
 
 <section class="max-w-5xl mx-auto py-24 px-6" id="about">
 
-
 <h2 class="text-4xl font-bold text-center mb-8 fade-in">
-
 About Matlas Solutions
-
 </h2>
 
 
-
-
 <p class="text-center text-gray-700 text-lg leading-relaxed fade-in">
-
 
 Matlas Solutions is a Virginia-based technology services company
 focused on supporting federal, state, local, and defense organizations
 through secure, reliable, and innovative IT solutions.
 
-
 <br><br>
-
 
 We provide enterprise IT support, infrastructure services,
 systems engineering, and technical workforce solutions designed
 to improve operational efficiency and help our customers achieve
 their mission objectives.
 
-
 <br><br>
-
 
 As a registered government contractor, Matlas Solutions is committed
 to building trusted partnerships and delivering responsive,
 high-quality technology services that meet the evolving needs
 of government organizations.
 
-
 </p>
 
-
 </section>
-
-
 
 
 
@@ -379,8 +411,7 @@ of government organizations.
 
 <!-- SERVICES SECTION -->
 
-
-<section class="bg-[#F1F5F9] py-24 px-6" id="services">
+<section class="bg-gray-100 py-24 px-6" id="services">
 
 
 <h2 class="text-4xl font-bold text-center mb-14 fade-in">
@@ -391,14 +422,11 @@ Core Capabilities
 
 
 
-
 <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 
 
 
-
 <!-- IT INFRASTRUCTURE -->
-
 
 <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2 slide-left">
 
@@ -430,8 +458,12 @@ and technology operations support.
 
 </div>
 
-
 </div>
+
+
+
+
+
 <!-- SYSTEMS ENGINEERING -->
 
 <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2 slide-right">
@@ -463,7 +495,6 @@ for complex mission environments.
 
 
 </div>
-
 
 </div>
 
@@ -504,7 +535,6 @@ government workforce requirements.
 
 
 </div>
-
 
 </div>
 
@@ -547,7 +577,6 @@ SAM.gov Registered Contractor
 
 
 
-
 <div class="bg-white rounded-lg shadow p-5 fade-in">
 
 <span class="text-green-600 text-xl">✓</span>
@@ -555,7 +584,6 @@ SAM.gov Registered Contractor
 UEI & CAGE Registration
 
 </div>
-
 
 
 
@@ -570,7 +598,6 @@ NAICS Codes:
 
 
 
-
 <div class="bg-white rounded-lg shadow p-5 fade-in">
 
 <span class="text-green-600 text-xl">✓</span>
@@ -581,7 +608,6 @@ Federal, State & Local Contracting Focus
 
 
 
-
 <div class="bg-white rounded-lg shadow p-5 fade-in">
 
 <span class="text-green-600 text-xl">✓</span>
@@ -589,7 +615,6 @@ Federal, State & Local Contracting Focus
 Security-Conscious Technology Services
 
 </div>
-
 
 
 
@@ -607,13 +632,7 @@ Scalable Technical Workforce Solutions
 
 
 </section>
-
-
-
-
-
 <!-- CONTACT SECTION -->
-
 
 <section class="bg-[#0b1f3a] text-white py-24 px-6" id="contact">
 
@@ -623,7 +642,6 @@ Scalable Technical Workforce Solutions
 Contact Matlas Solutions
 
 </h2>
-
 
 
 
@@ -641,11 +659,8 @@ Connect with our team.
 
 
 <p class="mb-3">
-
 📍 Virginia | Serving Federal, State & Local Organizations
-
 </p>
-
 
 
 <p class="mb-3">
@@ -659,17 +674,12 @@ ayoub.boukkari@matlassolutions.com
 
 </a>
 
-
 </p>
-
 
 
 <p>
-
 📞 (571) 230-0527
-
 </p>
-
 
 
 </div>
@@ -712,6 +722,7 @@ class="w-full p-3 rounded border text-gray-900"></textarea>
 
 
 
+
 <button
 type="submit"
 class="w-full bg-blue-700 text-white py-3 rounded font-semibold hover:bg-blue-600 transition">
@@ -737,6 +748,13 @@ Thank you! Your message has been sent.
 
 
 </section>
+
+
+
+
+
+
+
 <!-- FOOTER -->
 
 
@@ -780,9 +798,7 @@ Quick Links
 </h3>
 
 
-
 <ul class="space-y-2">
-
 
 
 <li>
@@ -797,7 +813,6 @@ About
 </li>
 
 
-
 <li>
 
 <a href="#services"
@@ -808,7 +823,6 @@ Services
 </a>
 
 </li>
-
 
 
 <li>
@@ -823,7 +837,6 @@ Capabilities
 </li>
 
 
-
 <li>
 
 <a href="#contact"
@@ -834,7 +847,6 @@ Contact
 </a>
 
 </li>
-
 
 
 </ul>
@@ -856,28 +868,20 @@ Contracting
 </h3>
 
 
-
 <p>
-
 SAM.gov Registered
-
 </p>
-
 
 
 <p>
-
 Virginia-Based Small Business
-
 </p>
 
 
-
 </div>
 
 
 </div>
-
 
 
 
@@ -889,19 +893,10 @@ Virginia-Based Small Business
 </div>
 
 
-
 </footer>
-
-
-
-
-
-
 <!-- JAVASCRIPT -->
 
-
 <script>
-
 
 
 // Mobile menu
@@ -926,14 +921,10 @@ mobileMenu.classList.toggle("hidden");
 
 
 
-
 // Smooth scrolling WITHOUT changing URL
 
-
 document.querySelectorAll(
-
 ".nav-link, .footer-link, .hero-link"
-
 )
 
 .forEach(link=>{
@@ -947,20 +938,20 @@ e.preventDefault();
 
 const target =
 document.querySelector(
-
 this.getAttribute("href")
-
 );
 
 
 
 if(target){
 
+
 target.scrollIntoView({
 
 behavior:"smooth"
 
 });
+
 
 }
 
@@ -982,9 +973,7 @@ mobileMenu.classList.add("hidden");
 
 // Logo scroll
 
-
 document.getElementById("logo")
-
 .addEventListener("click",function(e){
 
 
@@ -1012,17 +1001,13 @@ behavior:"smooth"
 
 
 const animatedElements =
-
 document.querySelectorAll(
-
 ".fade-in,.slide-left,.slide-right"
-
 );
 
 
 
 const observer =
-
 new IntersectionObserver(
 
 (entries)=>{
@@ -1070,11 +1055,11 @@ observer.observe(el);
 
 
 
+
 // Formspree Contact Form
 
 
 const form =
-
 document.getElementById("contact-form");
 
 
@@ -1087,7 +1072,6 @@ e.preventDefault();
 
 
 const data =
-
 new FormData(form);
 
 
@@ -1121,11 +1105,8 @@ if(response.ok){
 
 
 document
-
 .getElementById("success-msg")
-
 .classList
-
 .remove("hidden");
 
 
@@ -1138,9 +1119,7 @@ else{
 
 
 alert(
-
 "There was a problem sending your message."
-
 );
 
 
@@ -1154,9 +1133,7 @@ alert(
 
 
 alert(
-
 "There was a problem sending your message."
-
 );
 
 
@@ -1164,331 +1141,133 @@ alert(
 
 
 });
-  <script>
 
 
-const canvas =
-document.getElementById("earthCanvas");
+const canvas = document.getElementById("earthCanvas");
 
+const scene = new THREE.Scene();
 
-const scene =
-new THREE.Scene();
-
-
-
-
-const camera =
-new THREE.PerspectiveCamera(
-
+const camera = new THREE.PerspectiveCamera(
 45,
-
 1,
-
 0.1,
-
 1000
-
 );
-
-
 
 camera.position.z = 3;
 
 
-
-
-
-const renderer =
-new THREE.WebGLRenderer({
-
-canvas:canvas,
-
-alpha:true,
-
-antialias:true
-
+const renderer = new THREE.WebGLRenderer({
+canvas: canvas,
+alpha:true
 });
 
+renderer.setSize(520,520);
 
 
-renderer.setPixelRatio(
-window.devicePixelRatio
-);
-
-
-renderer.setSize(
-520,
-520
-);
-
-
-
-
-
-
-// DIGITAL EARTH CORE
-
-
-const geometry =
-
-new THREE.SphereGeometry(
-
+const geometry = new THREE.SphereGeometry(
 1,
-
-128,
-
-128
-
+64,
+64
 );
 
 
+const texture = new THREE.TextureLoader().load(
+"https://threejs.org/examples/textures/planets/earth_specular_2048.jpg"
+);
 
 
+const material = new THREE.MeshStandardMaterial({
 
-const material =
+map:texture,
 
-new THREE.MeshStandardMaterial({
+color:0x0b2942,
 
-color:0x061b2b,
-
-emissive:0x00bfff,
+emissive:0x003b66,
 
 emissiveIntensity:0.8,
 
-metalness:0.7,
+roughness:0.9,
 
-roughness:0.35
+metalness:0.3
 
 });
 
 
-
-
-
-
-const earth =
-
-new THREE.Mesh(
-
+const earth = new THREE.Mesh(
 geometry,
-
 material
-
 );
-
 
 
 scene.add(earth);
-
-
-
-
-
-
-
-// DIGITAL GRID OVERLAY
-
-
-const gridGeometry =
-
+  const atmosphereGeometry =
 new THREE.SphereGeometry(
-
-1.01,
-
-96,
-
-96
-
+1.05,
+64,
+64
 );
-
-
-
-
-
-const gridMaterial =
-
-new THREE.MeshBasicMaterial({
-
-color:0x22d3ee,
-
-wireframe:true,
-
-transparent:true,
-
-opacity:0.3
-
-});
-
-
-
-
-
-const grid =
-
-new THREE.Mesh(
-
-gridGeometry,
-
-gridMaterial
-
-);
-
-
-
-scene.add(grid);
-
-
-
-
-
-
-
-// ATMOSPHERE GLOW
-
-
-const atmosphereGeometry =
-
-new THREE.SphereGeometry(
-
-1.08,
-
-96,
-
-96
-
-);
-
-
-
 
 
 const atmosphereMaterial =
-
 new THREE.MeshBasicMaterial({
 
 color:0x22d3ee,
 
 transparent:true,
 
-opacity:0.12,
+opacity:0.18,
 
 side:THREE.BackSide
 
 });
 
 
-
-
-
-
 const atmosphere =
-
 new THREE.Mesh(
-
 atmosphereGeometry,
-
 atmosphereMaterial
-
 );
-
 
 
 scene.add(atmosphere);
 
 
-
-
-
-
-
-// LIGHTING
-
-
-const light =
-
-new THREE.DirectionalLight(
-
+const light = new THREE.DirectionalLight(
 0xffffff,
-
 2
-
 );
 
-
-
-light.position.set(
-
-5,
-
-3,
-
-5
-
-);
-
-
+light.position.set(5,3,5);
 
 scene.add(light);
 
 
-
-
 scene.add(
-
 new THREE.AmbientLight(
-
 0xffffff,
-
 0.5
-
 )
-
 );
 
-
-
-
-
-
-
-
-// KEEPING YOUR ROTATION SPEED EXACTLY THE SAME
 
 
 function animate(){
 
-
 requestAnimationFrame(animate);
-
-
 
 earth.rotation.y += 0.002;
 
-
-grid.rotation.y += 0.002;
-
-
-
 renderer.render(
-
 scene,
-
 camera
-
 );
-
-
 
 }
 
 
-
 animate();
-
-
-
 </script>
-
 
 
 </body>
