@@ -1178,7 +1178,17 @@ const texture = new THREE.TextureLoader().load(
 
 
 const material = new THREE.MeshStandardMaterial({
-map:texture
+
+map:texture,
+
+emissive:0x003344,
+
+emissiveIntensity:0.5,
+
+roughness:0.8,
+
+metalness:0.2
+
 });
 
 
