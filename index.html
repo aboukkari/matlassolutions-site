@@ -163,6 +163,105 @@ background-position:1000px center;
 
 
 
+/* Globe HUD frame */
+
+.globe-wrap {
+position:relative;
+width:520px;
+height:520px;
+}
+
+.globe-wrap canvas {
+position:relative;
+z-index:2;
+filter:drop-shadow(0 0 40px rgba(34,211,238,.35));
+}
+
+.globe-ring {
+position:absolute;
+border-radius:50%;
+pointer-events:none;
+}
+
+.ring-1 {
+inset:-34px;
+border:1px dashed rgba(34,211,238,.28);
+animation:spinSlow 70s linear infinite;
+}
+
+.ring-1:before,
+.ring-1:after {
+content:"";
+position:absolute;
+width:6px;
+height:6px;
+border-radius:50%;
+background:#22d3ee;
+box-shadow:0 0 8px 2px rgba(34,211,238,.9);
+top:50%;
+left:-3px;
+transform:translateY(-50%);
+}
+
+.ring-1:after {
+left:auto;
+right:-3px;
+}
+
+.ring-2 {
+inset:-62px;
+border:1px solid rgba(34,211,238,.14);
+animation:spinSlow 100s linear infinite reverse;
+}
+
+@keyframes spinSlow {
+from { transform:rotate(0deg); }
+to { transform:rotate(360deg); }
+}
+
+.globe-scan {
+position:absolute;
+inset:0;
+border-radius:50%;
+overflow:hidden;
+pointer-events:none;
+z-index:3;
+}
+
+.globe-scan:before {
+content:"";
+position:absolute;
+left:0;
+right:0;
+height:45%;
+background:linear-gradient(
+to bottom,
+transparent,
+rgba(34,211,238,.16),
+transparent
+);
+animation:scanMove 5s ease-in-out infinite;
+}
+
+@keyframes scanMove {
+0% { top:-45%; }
+100% { top:100%; }
+}
+
+.corner {
+position:absolute;
+width:22px;
+height:22px;
+border:2px solid rgba(34,211,238,.55);
+z-index:4;
+}
+
+.corner-tl { top:-12px; left:-12px; border-right:none; border-bottom:none; }
+.corner-tr { top:-12px; right:-12px; border-left:none; border-bottom:none; }
+.corner-bl { bottom:-12px; left:-12px; border-right:none; border-top:none; }
+.corner-br { bottom:-12px; right:-12px; border-left:none; border-top:none; }
+
+
 /* Background grid */
 
 .grid-bg {
@@ -308,7 +407,21 @@ Contact
 
 <div class="absolute right-[-40px] top-1/2 -translate-y-1/2 hidden lg:block">
 
+<div class="globe-wrap">
+
+<div class="globe-ring ring-1"></div>
+<div class="globe-ring ring-2"></div>
+
 <canvas id="earthCanvas" width="520" height="520"></canvas>
+
+<div class="globe-scan"></div>
+
+<span class="corner corner-tl"></span>
+<span class="corner corner-tr"></span>
+<span class="corner corner-bl"></span>
+<span class="corner corner-br"></span>
+
+</div>
 
 </div>
 
@@ -1159,112 +1272,243 @@ camera.position.z = 3;
 
 const renderer = new THREE.WebGLRenderer({
 canvas: canvas,
-alpha:true
+alpha:true,
+antialias:true
 });
 
 renderer.setSize(520,520);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 
 
-const geometry = new THREE.SphereGeometry(
-1,
-64,
-64
-);
+// Everything rotates together as one unit
+const globeGroup = new THREE.Group();
+scene.add(globeGroup);
 
 
-const texture = new THREE.TextureLoader().load(
-"https://threejs.org/examples/textures/planets/earth_specular_2048.jpg"
-);
+// --- Dark core sphere ---
 
+const coreGeometry = new THREE.SphereGeometry(0.98,48,48);
 
-const material = new THREE.MeshStandardMaterial({
-
-map:texture,
-
-color:0x0b2942,
-
-emissive:0x003b66,
-
-emissiveIntensity:0.8,
-
-roughness:0.9,
-
-metalness:0.3
-
-});
-
-
-const earth = new THREE.Mesh(
-geometry,
-material
-);
-
-
-scene.add(earth);
-  const atmosphereGeometry =
-new THREE.SphereGeometry(
-1.05,
-64,
-64
-);
-
-
-const atmosphereMaterial =
-new THREE.MeshBasicMaterial({
-
-color:0x22d3ee,
-
+const coreMaterial = new THREE.MeshBasicMaterial({
+color:0x030b1a,
 transparent:true,
+opacity:0.88
+});
 
-opacity:0.18,
+const core = new THREE.Mesh(coreGeometry,coreMaterial);
+globeGroup.add(core);
 
-side:THREE.BackSide
+
+// --- Lat/long wireframe shell ---
+
+const wireGeometry = new THREE.SphereGeometry(1,28,20);
+
+const wireMaterial = new THREE.MeshBasicMaterial({
+color:0x22d3ee,
+wireframe:true,
+transparent:true,
+opacity:0.22,
+blending:THREE.AdditiveBlending
+});
+
+const wireframeSphere = new THREE.Mesh(wireGeometry,wireMaterial);
+globeGroup.add(wireframeSphere);
+
+
+// --- Layered atmosphere glow ---
+
+const atmosphereGeometry = new THREE.SphereGeometry(1.08,64,64);
+
+const atmosphereMaterial = new THREE.MeshBasicMaterial({
+color:0x22d3ee,
+transparent:true,
+opacity:0.15,
+side:THREE.BackSide,
+blending:THREE.AdditiveBlending
+});
+
+const atmosphere = new THREE.Mesh(atmosphereGeometry,atmosphereMaterial);
+globeGroup.add(atmosphere);
+
+
+const atmosphere2Geometry = new THREE.SphereGeometry(1.18,64,64);
+
+const atmosphere2Material = new THREE.MeshBasicMaterial({
+color:0x22d3ee,
+transparent:true,
+opacity:0.06,
+side:THREE.BackSide,
+blending:THREE.AdditiveBlending
+});
+
+const atmosphere2 = new THREE.Mesh(atmosphere2Geometry,atmosphere2Material);
+globeGroup.add(atmosphere2);
+
+
+// --- Generated glow-dot texture for nodes (no external image needed) ---
+
+function makeDotTexture(){
+
+const size = 64;
+const c = document.createElement("canvas");
+c.width = size;
+c.height = size;
+
+const ctx = c.getContext("2d");
+
+const gradient = ctx.createRadialGradient(
+size/2,size/2,0,
+size/2,size/2,size/2
+);
+
+gradient.addColorStop(0,"rgba(190,247,255,1)");
+gradient.addColorStop(0.4,"rgba(34,211,238,0.9)");
+gradient.addColorStop(1,"rgba(34,211,238,0)");
+
+ctx.fillStyle = gradient;
+ctx.fillRect(0,0,size,size);
+
+return new THREE.CanvasTexture(c);
+
+}
+
+const dotTexture = makeDotTexture();
+
+
+// --- Network nodes evenly distributed on the sphere ---
+
+function fibonacciSphere(samples){
+
+const points = [];
+const offset = 2/samples;
+const increment = Math.PI * (3 - Math.sqrt(5));
+
+for(let i=0;i<samples;i++){
+
+const y = i*offset - 1 + offset/2;
+const r = Math.sqrt(Math.max(0,1-y*y));
+const phi = i*increment;
+
+const x = Math.cos(phi)*r;
+const z = Math.sin(phi)*r;
+
+points.push(new THREE.Vector3(x,y,z));
+
+}
+
+return points;
+
+}
+
+const NODE_COUNT = 45;
+const spherePoints = fibonacciSphere(NODE_COUNT);
+const nodeSprites = [];
+
+spherePoints.forEach(p=>{
+
+const spriteMaterial = new THREE.SpriteMaterial({
+map:dotTexture,
+transparent:true,
+depthWrite:false,
+blending:THREE.AdditiveBlending
+});
+
+const sprite = new THREE.Sprite(spriteMaterial);
+
+const scale = 0.035 + Math.random()*0.03;
+sprite.scale.set(scale,scale,1);
+sprite.position.copy(p).multiplyScalar(1.005);
+
+sprite.userData.baseScale = scale;
+sprite.userData.phase = Math.random()*Math.PI*2;
+
+globeGroup.add(sprite);
+nodeSprites.push(sprite);
 
 });
 
 
-const atmosphere =
-new THREE.Mesh(
-atmosphereGeometry,
-atmosphereMaterial
-);
+// --- Arcs connecting nodes, like live data links ---
+
+const ARC_COUNT = 14;
+
+for(let i=0;i<ARC_COUNT;i++){
+
+const a = spherePoints[Math.floor(Math.random()*spherePoints.length)];
+const b = spherePoints[Math.floor(Math.random()*spherePoints.length)];
+
+if(a===b) continue;
+
+const mid = a.clone().add(b).multiplyScalar(0.5);
+const lift = 0.25 + Math.random()*0.35;
+mid.normalize().multiplyScalar(1+lift);
+
+const curve = new THREE.QuadraticBezierCurve3(a,mid,b);
+const points = curve.getPoints(40);
+
+const arcGeometry = new THREE.BufferGeometry().setFromPoints(points);
+
+const arcMaterial = new THREE.LineBasicMaterial({
+color:0x67e8f9,
+transparent:true,
+opacity:0.35,
+blending:THREE.AdditiveBlending
+});
+
+const arc = new THREE.Line(arcGeometry,arcMaterial);
+globeGroup.add(arc);
+
+}
 
 
-scene.add(atmosphere);
+// --- Tilted HUD accent rings orbiting the globe ---
+
+const ringGeometry = new THREE.TorusGeometry(1.6,0.004,8,128);
+
+const ringMaterial = new THREE.MeshBasicMaterial({
+color:0x22d3ee,
+transparent:true,
+opacity:0.25,
+blending:THREE.AdditiveBlending
+});
+
+const ring = new THREE.Mesh(ringGeometry,ringMaterial);
+ring.rotation.x = Math.PI/2.4;
+scene.add(ring);
+
+const ring2Geometry = new THREE.TorusGeometry(1.4,0.003,8,128);
+const ring2 = new THREE.Mesh(ring2Geometry,ringMaterial.clone());
+ring2.rotation.x = -Math.PI/3;
+ring2.rotation.y = Math.PI/6;
+scene.add(ring2);
 
 
-const light = new THREE.DirectionalLight(
-0xffffff,
-2
-);
-
-light.position.set(5,3,5);
-
-scene.add(light);
+scene.add(new THREE.AmbientLight(0x22d3ee,0.4));
 
 
-scene.add(
-new THREE.AmbientLight(
-0xffffff,
-0.5
-)
-);
-
-
+const clock = new THREE.Clock();
 
 function animate(){
 
 requestAnimationFrame(animate);
 
-earth.rotation.y += 0.003;
+const t = clock.getElapsedTime();
 
-renderer.render(
-scene,
-camera
-);
+globeGroup.rotation.y += 0.0022;
+ring.rotation.z += 0.0009;
+ring2.rotation.z -= 0.0013;
+
+nodeSprites.forEach(sprite=>{
+
+const pulse = 0.7 + Math.sin(t*2 + sprite.userData.phase)*0.3;
+const s = sprite.userData.baseScale * pulse;
+sprite.scale.set(s,s,1);
+
+});
+
+renderer.render(scene,camera);
 
 }
-
 
 animate();
 </script>
