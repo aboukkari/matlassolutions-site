@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,12 +26,12 @@ font-family:'Inter',sans-serif;
 }
 
 
-/* Scroll animations */
+/* Animations */
 
 .fade-in {
 opacity:0;
 transform:translateY(20px);
-transition:all .8s ease;
+transition:.8s ease;
 }
 
 .fade-in.show {
@@ -41,7 +43,7 @@ transform:translateY(0);
 .slide-left {
 opacity:0;
 transform:translateX(-30px);
-transition:all .8s ease;
+transition:.8s ease;
 }
 
 .slide-left.show {
@@ -53,7 +55,7 @@ transform:translateX(0);
 .slide-right {
 opacity:0;
 transform:translateX(30px);
-transition:all .8s ease;
+transition:.8s ease;
 }
 
 .slide-right.show {
@@ -62,104 +64,136 @@ transform:translateX(0);
 }
 
 
-/* Digital Globe */
+/* Digital Earth */
 
 .globe {
+
 width:520px;
 height:520px;
+
 border-radius:50%;
+
 position:relative;
 
-border:1px solid rgba(34,211,238,.5);
+overflow:hidden;
+
+background-image:url("https://upload.wikimedia.org/wikipedia/commons/8/83/Earthmap1000x500compac.jpg");
+
+background-size:auto 100%;
+
+background-repeat:repeat-x;
+
+border:2px solid rgba(34,211,238,.5);
 
 box-shadow:
-0 0 80px rgba(34,211,238,.25),
-inset 0 0 60px rgba(34,211,238,.15);
 
-animation:spin 35s linear infinite;
-
-}
+0 0 80px rgba(34,211,238,.45),
+inset -60px -40px 100px rgba(0,0,0,.8);
 
 
-.globe:before,
-.globe:after {
-
-content:"";
-position:absolute;
-inset:0;
-border-radius:50%;
-border:1px solid rgba(34,211,238,.25);
+animation:earthRotate 35s linear infinite;
 
 }
 
 
 .globe:before {
-transform:rotateX(65deg);
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+
+background-image:
+
+linear-gradient(
+rgba(34,211,238,.18) 1px,
+transparent 1px
+),
+
+linear-gradient(
+90deg,
+rgba(34,211,238,.18) 1px,
+transparent 1px
+);
+
+
+background-size:35px 35px;
+
+mix-blend-mode:screen;
+
 }
 
 
 .globe:after {
-transform:rotateY(65deg);
-}
 
-
-
-.globe-ring {
+content:"";
 
 position:absolute;
-inset:15%;
+
+inset:-20px;
+
 border-radius:50%;
-border:1px solid rgba(34,211,238,.15);
+
+box-shadow:
+
+0 0 60px rgba(34,211,238,.8);
 
 }
 
 
 
-@keyframes spin {
+@keyframes earthRotate {
 
 from {
-transform:rotate(0deg);
+
+background-position:0 center;
+
 }
 
 to {
-transform:rotate(360deg);
-}
+
+background-position:1000px center;
 
 }
 
+}
 
 
-/* Background particles */
+
+/* Background grid */
 
 .grid-bg {
 
 background-image:
+
 linear-gradient(
 rgba(56,189,248,.08) 1px,
 transparent 1px
 ),
+
 linear-gradient(
 90deg,
 rgba(56,189,248,.08) 1px,
 transparent 1px
 );
 
+
 background-size:60px 60px;
 
 }
 
 
-
 </style>
-
 
 
 <link rel="icon" type="image/png" href="favicon-32.png">
 
 <meta name="theme-color" content="#050816">
 
-</head>
 
+</head>
 
 
 <body class="bg-gray-50 text-gray-800 overflow-x-hidden">
@@ -181,20 +215,23 @@ class="h-10 w-auto">
 </a>
 
 
-
 <nav class="hidden sm:flex space-x-8">
+
 
 <a href="#about" class="nav-link hover:text-blue-600">
 About
 </a>
 
+
 <a href="#services" class="nav-link hover:text-blue-600">
 Services
 </a>
 
+
 <a href="#capabilities" class="nav-link hover:text-blue-600">
 Capabilities
 </a>
+
 
 <a href="#contact" class="nav-link hover:text-blue-600">
 Contact
@@ -202,7 +239,6 @@ Contact
 
 
 </nav>
-
 
 
 <button id="mobile-menu-button"
@@ -220,31 +256,36 @@ d="M4 6h16M4 12h16M4 18h16"/>
 
 </svg>
 
+
 </button>
 
 
 </div>
 
 
-
 <nav id="mobile-menu"
 class="hidden sm:hidden bg-white shadow p-5 space-y-3">
+
 
 <a href="#about" class="nav-link block">
 About
 </a>
 
+
 <a href="#services" class="nav-link block">
 Services
 </a>
+
 
 <a href="#capabilities" class="nav-link block">
 Capabilities
 </a>
 
+
 <a href="#contact" class="nav-link block">
 Contact
 </a>
+
 
 </nav>
 
@@ -252,52 +293,36 @@ Contact
 </header>
 
 
-
-
-
-<!-- FUTURISTIC HERO SECTION -->
-
+<!-- HERO -->
 
 <section class="relative h-screen flex items-center overflow-hidden bg-[#050816] text-white px-6">
 
 
-<!-- grid -->
-
 <div class="absolute inset-0 grid-bg"></div>
 
 
-
-<!-- blue glow -->
-
 <div class="absolute w-[700px] h-[700px] bg-cyan-400 opacity-10 blur-3xl rounded-full right-[-200px]">
-
 </div>
 
-
-
-
-<!-- DIGITAL GLOBE -->
 
 <div class="absolute right-[-120px] top-1/2 -translate-y-1/2 hidden lg:block">
 
-
-<div class="globe">
-
-<div class="globe-ring"></div>
+<div class="globe"></div>
 
 </div>
 
 
+<div class="relative z-10 max-w-3xl">
+
+
+<div class="inline-block mb-5 px-4 py-2 border border-cyan-400 rounded-full text-cyan-300 text-sm tracking-widest font-semibold fade-in">
+
+IT • ENGINEERING • TECHNICAL STAFFING
+
 </div>
-
-
-
-
-<div class="relative z-10 max-w-3xl mx-auto lg:mx-0">
 
 
 <h1 class="text-5xl sm:text-6xl font-extrabold leading-tight fade-in">
-
 
 Mission-Critical IT Solutions
 
@@ -307,55 +332,42 @@ Mission-Critical IT Solutions
 for Government & Defense
 </span>
 
-
 </h1>
 
 
-
-
-<p class="mt-6 text-xl text-gray-300 max-w-2xl fade-in"
-style="transition-delay:.2s">
-
+<p class="mt-6 text-xl text-gray-300 max-w-2xl fade-in">
 
 Matlas Solutions delivers secure technology services,
 enterprise infrastructure support, and technical staffing
 solutions that help government organizations achieve
 operational readiness and mission success.
 
-
 </p>
 
 
-
-
-<div class="mt-8 flex flex-wrap gap-4 fade-in"
-style="transition-delay:.4s">
+<div class="mt-8 flex flex-wrap gap-4 fade-in">
 
 
 <a href="#contact"
-class="bg-cyan-400 text-black px-8 py-3 rounded font-semibold hover:bg-cyan-300 transition">
+class="hero-link bg-cyan-400 text-black px-8 py-3 rounded font-semibold hover:bg-cyan-300 transition">
 
 Request Support
 
 </a>
 
 
-
 <a href="#capabilities"
-class="border border-cyan-400 px-8 py-3 rounded hover:bg-cyan-400 hover:text-black transition">
+class="hero-link border border-cyan-400 px-8 py-3 rounded hover:bg-cyan-400 hover:text-black transition">
 
 View Capabilities
 
 </a>
 
 
-
 </div>
 
 
-
 </div>
-
 
 
 </section>
@@ -368,35 +380,27 @@ About Matlas Solutions
 </h2>
 
 
-<p class="text-center text-gray-700 text-lg leading-relaxed fade-in"
-style="transition-delay:.2s">
-
+<p class="text-center text-gray-700 text-lg leading-relaxed fade-in">
 
 Matlas Solutions is a Virginia-based technology services company
 focused on supporting federal, state, local, and defense organizations
 through secure, reliable, and innovative IT solutions.
 
-
 <br><br>
-
 
 We provide enterprise IT support, infrastructure services,
 systems engineering, and technical workforce solutions designed
 to improve operational efficiency and help our customers achieve
 their mission objectives.
 
-
 <br><br>
-
 
 As a registered government contractor, Matlas Solutions is committed
 to building trusted partnerships and delivering responsive,
 high-quality technology services that meet the evolving needs
 of government organizations.
 
-
 </p>
-
 
 </section>
 
@@ -404,9 +408,7 @@ of government organizations.
 
 
 
-
 <!-- SERVICES SECTION -->
-
 
 <section class="bg-gray-100 py-24 px-6" id="services">
 
@@ -423,31 +425,18 @@ Core Capabilities
 
 
 
+<!-- IT INFRASTRUCTURE -->
+
+<div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2 slide-left">
 
 
-<!-- IT Infrastructure -->
-
-<div class="bg-white rounded-xl shadow-md p-8 hover:shadow-xl transition transform hover:-translate-y-2 slide-left">
-
-
-<div class="text-center mb-5">
-
-<svg xmlns="http://www.w3.org/2000/svg"
-fill="none"
-viewBox="0 0 24 24"
-stroke-width="1.5"
-stroke="currentColor"
-class="w-14 h-14 mx-auto text-blue-600">
+<img
+src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31"
+alt="Enterprise IT Infrastructure"
+class="w-full h-48 object-cover">
 
 
-<path stroke-linecap="round"
-stroke-linejoin="round"
-d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25A2.25 2.25 0 0 1 5.25 3h13.5A2.25 2.25 0 0 1 21 5.25Z"/>
-
-</svg>
-
-</div>
-
+<div class="p-8">
 
 
 <h3 class="text-xl font-bold text-center mb-3">
@@ -468,37 +457,24 @@ and technology operations support.
 
 </div>
 
-
-
-
-
-
-<!-- Engineering -->
-
-<div class="bg-white rounded-xl shadow-md p-8 hover:shadow-xl transition transform hover:-translate-y-2 slide-right">
-
-
-<div class="text-center mb-5">
-
-
-<svg xmlns="http://www.w3.org/2000/svg"
-fill="none"
-viewBox="0 0 24 24"
-stroke-width="1.5"
-stroke="currentColor"
-class="w-14 h-14 mx-auto text-blue-600">
-
-
-<path stroke-linecap="round"
-stroke-linejoin="round"
-d="M12 6v12m6-6H6"/>
-
-
-</svg>
-
-
 </div>
 
+
+
+
+
+<!-- SYSTEMS ENGINEERING -->
+
+<div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2 slide-right">
+
+
+<img
+src="https://images.unsplash.com/photo-1581092160607-ee22621dd758"
+alt="Systems Engineering"
+class="w-full h-48 object-cover">
+
+
+<div class="p-8">
 
 
 <h3 class="text-xl font-bold text-center mb-3">
@@ -519,39 +495,26 @@ for complex mission environments.
 
 </div>
 
-
-
-
-
-
-<!-- Staffing -->
-
-
-<div class="bg-white rounded-xl shadow-md p-8 hover:shadow-xl transition transform hover:-translate-y-2 slide-left">
-
-
-<div class="text-center mb-5">
-
-
-<svg xmlns="http://www.w3.org/2000/svg"
-fill="none"
-viewBox="0 0 24 24"
-stroke-width="1.5"
-stroke="currentColor"
-class="w-14 h-14 mx-auto text-blue-600">
-
-
-<path stroke-linecap="round"
-stroke-linejoin="round"
-d="M15 19.128a9.38 9.38 0 0 0 2.625.372A9.337 9.337 0 0 0 21 18.75M9 19.128A9.337 9.337 0 0 1 6.375 19.5 9.38 9.38 0 0 1 3 18.75m12-3.75a3 3 0 1 0-6 0m6 0a3 3 0 1 1-6 0m9-5.25a3 3 0 1 0-6 0m6 0a3 3 0 1 1-6 0"/>
-
-
-</svg>
-
-
 </div>
 
 
+
+
+
+
+<!-- TECHNICAL STAFFING -->
+
+
+<div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2 slide-left">
+
+
+<img
+src="https://images.unsplash.com/photo-1556761175-b413da4baf72"
+alt="Technical Staffing Team"
+class="w-full h-48 object-cover">
+
+
+<div class="p-8">
 
 
 <h3 class="text-xl font-bold text-center mb-3">
@@ -570,16 +533,15 @@ government workforce requirements.
 </p>
 
 
-
 </div>
 
+</div>
 
 
 </div>
 
 
 </section>
-
 
 
 
@@ -606,9 +568,7 @@ Government Contracting Capabilities
 
 <div class="bg-white rounded-lg shadow p-5 fade-in">
 
-<span class="text-green-600 text-xl">
-✓
-</span>
+<span class="text-green-600 text-xl">✓</span>
 
 SAM.gov Registered Contractor
 
@@ -616,12 +576,9 @@ SAM.gov Registered Contractor
 
 
 
-
 <div class="bg-white rounded-lg shadow p-5 fade-in">
 
-<span class="text-green-600 text-xl">
-✓
-</span>
+<span class="text-green-600 text-xl">✓</span>
 
 UEI & CAGE Registration
 
@@ -629,12 +586,9 @@ UEI & CAGE Registration
 
 
 
-
 <div class="bg-white rounded-lg shadow p-5 fade-in">
 
-<span class="text-green-600 text-xl">
-✓
-</span>
+<span class="text-green-600 text-xl">✓</span>
 
 NAICS Codes:
 541512, 541513, 541330, 561320
@@ -643,12 +597,9 @@ NAICS Codes:
 
 
 
-
 <div class="bg-white rounded-lg shadow p-5 fade-in">
 
-<span class="text-green-600 text-xl">
-✓
-</span>
+<span class="text-green-600 text-xl">✓</span>
 
 Federal, State & Local Contracting Focus
 
@@ -656,12 +607,9 @@ Federal, State & Local Contracting Focus
 
 
 
-
 <div class="bg-white rounded-lg shadow p-5 fade-in">
 
-<span class="text-green-600 text-xl">
-✓
-</span>
+<span class="text-green-600 text-xl">✓</span>
 
 Security-Conscious Technology Services
 
@@ -669,17 +617,13 @@ Security-Conscious Technology Services
 
 
 
-
 <div class="bg-white rounded-lg shadow p-5 fade-in">
 
-<span class="text-green-600 text-xl">
-✓
-</span>
+<span class="text-green-600 text-xl">✓</span>
 
 Scalable Technical Workforce Solutions
 
 </div>
-
 
 
 
@@ -719,13 +663,16 @@ Connect with our team.
 
 
 <p class="mb-3">
-📧 
+
+📧
+
 <a href="mailto:ayoub.boukkari@matlassolutions.com"
 class="underline hover:text-cyan-300">
 
 ayoub.boukkari@matlassolutions.com
 
 </a>
+
 </p>
 
 
@@ -779,9 +726,7 @@ class="w-full p-3 rounded border text-gray-900"></textarea>
 type="submit"
 class="w-full bg-blue-700 text-white py-3 rounded font-semibold hover:bg-blue-600 transition">
 
-
 Send Message
-
 
 </button>
 
@@ -795,12 +740,10 @@ Thank you! Your message has been sent.
 </p>
 
 
-
 </form>
 
 
 </div>
-
 
 
 </section>
@@ -821,6 +764,7 @@ Thank you! Your message has been sent.
 
 
 <div>
+
 
 <h3 class="text-white font-semibold mb-3">
 
@@ -855,31 +799,52 @@ Quick Links
 
 <ul class="space-y-2">
 
+
 <li>
-<a href="#about" class="footer-link hover:text-white">
+
+<a href="#about"
+class="footer-link hover:text-white">
+
 About
+
 </a>
+
 </li>
 
 
 <li>
-<a href="#services" class="footer-link hover:text-white">
+
+<a href="#services"
+class="footer-link hover:text-white">
+
 Services
+
 </a>
+
 </li>
 
 
 <li>
-<a href="#capabilities" class="footer-link hover:text-white">
+
+<a href="#capabilities"
+class="footer-link hover:text-white">
+
 Capabilities
+
 </a>
+
 </li>
 
 
 <li>
-<a href="#contact" class="footer-link hover:text-white">
+
+<a href="#contact"
+class="footer-link hover:text-white">
+
 Contact
+
 </a>
+
 </li>
 
 
@@ -906,6 +871,7 @@ Contracting
 SAM.gov Registered
 </p>
 
+
 <p>
 Virginia-Based Small Business
 </p>
@@ -927,15 +893,7 @@ Virginia-Based Small Business
 
 
 </footer>
-
-
-
-
-
-
-
 <!-- JAVASCRIPT -->
-
 
 <script>
 
@@ -961,9 +919,13 @@ mobileMenu.classList.toggle("hidden");
 
 
 
-// Smooth scrolling
 
-document.querySelectorAll(".nav-link, .footer-link")
+// Smooth scrolling WITHOUT changing URL
+
+document.querySelectorAll(
+".nav-link, .footer-link, .hero-link"
+)
+
 .forEach(link=>{
 
 
@@ -974,14 +936,21 @@ e.preventDefault();
 
 
 const target =
-document.querySelector(this.getAttribute("href"));
+document.querySelector(
+this.getAttribute("href")
+);
+
 
 
 if(target){
 
+
 target.scrollIntoView({
+
 behavior:"smooth"
+
 });
+
 
 }
 
@@ -994,6 +963,7 @@ mobileMenu.classList.add("hidden");
 
 
 });
+
 
 
 
@@ -1038,6 +1008,7 @@ document.querySelectorAll(
 
 const observer =
 new IntersectionObserver(
+
 (entries)=>{
 
 
@@ -1046,9 +1017,12 @@ entries.forEach(entry=>{
 
 if(entry.isIntersecting){
 
+
 entry.target.classList.add("show");
 
+
 observer.unobserve(entry.target);
+
 
 }
 
@@ -1057,9 +1031,15 @@ observer.unobserve(entry.target);
 
 
 },
+
 {
+
 threshold:.15
-});
+
+}
+
+);
+
 
 
 
@@ -1075,8 +1055,7 @@ observer.observe(el);
 
 
 
-
-// Formspree
+// Formspree Contact Form
 
 
 const form =
@@ -1097,7 +1076,9 @@ new FormData(form);
 
 
 fetch(
+
 "https://formspree.io/f/manvqaqj",
+
 {
 
 method:"POST",
@@ -1105,12 +1086,16 @@ method:"POST",
 body:data,
 
 headers:{
+
 "Accept":"application/json"
+
 }
 
 }
 
 )
+
+
 
 .then(response=>{
 
@@ -1120,7 +1105,8 @@ if(response.ok){
 
 document
 .getElementById("success-msg")
-.classList.remove("hidden");
+.classList
+.remove("hidden");
 
 
 form.reset();
@@ -1130,20 +1116,25 @@ form.reset();
 
 else{
 
+
 alert(
 "There was a problem sending your message."
 );
+
 
 }
 
 
 })
 
+
 .catch(()=>{
+
 
 alert(
 "There was a problem sending your message."
 );
+
 
 });
 
@@ -1153,7 +1144,6 @@ alert(
 
 
 </script>
-
 
 
 </body>
