@@ -31,38 +31,56 @@ font-family:'Inter',sans-serif;
 
 .fade-in {
 opacity:0;
-transform:translateY(20px);
-transition:.8s ease;
+transform:translateY(20px) !important;
+transition-property:opacity,transform !important;
+transition-duration:.8s !important;
+transition-timing-function:cubic-bezier(.16,.8,.3,1) !important;
+transition-delay:0s !important;
 }
 
 .fade-in.show {
 opacity:1;
-transform:translateY(0);
+transform:translateY(0) !important;
 }
 
 
+/* slide-left/right use Tailwind's own --tw-translate-x variable (rather than
+setting "transform" directly) so they compose cleanly with the hover lift
+(hover:-translate-y-2) already on these cards instead of fighting it. */
+
 .slide-left {
 opacity:0;
-transform:translateX(-30px);
-transition:.8s ease;
+--tw-translate-x:-30px !important;
+transition-property:opacity,transform !important;
+transition-duration:.8s !important;
+transition-timing-function:cubic-bezier(.16,.8,.3,1) !important;
+transition-delay:0s !important;
 }
 
 .slide-left.show {
 opacity:1;
-transform:translateX(0);
+--tw-translate-x:0px !important;
 }
 
 
 .slide-right {
 opacity:0;
-transform:translateX(30px);
-transition:.8s ease;
+--tw-translate-x:30px !important;
+transition-property:opacity,transform !important;
+transition-duration:.8s !important;
+transition-timing-function:cubic-bezier(.16,.8,.3,1) !important;
+transition-delay:0s !important;
 }
 
 .slide-right.show {
 opacity:1;
-transform:translateX(0);
+--tw-translate-x:0px !important;
 }
+
+/* Gentle cascade across the three capability cards instead of all popping at once */
+#services .grid > div:nth-child(1) { transition-delay:0s !important; }
+#services .grid > div:nth-child(2) { transition-delay:.12s !important; }
+#services .grid > div:nth-child(3) { transition-delay:.24s !important; }
 
 
 /* Digital Earth */
@@ -184,7 +202,7 @@ pointer-events:none;
 }
 
 .ring-1 {
-inset:-34px;
+inset:-22px;
 border:1px dashed rgba(34,211,238,.28);
 animation:spinSlow 70s linear infinite;
 }
@@ -209,7 +227,7 @@ right:-3px;
 }
 
 .ring-2 {
-inset:-62px;
+inset:-38px;
 border:1px solid rgba(34,211,238,.14);
 animation:spinSlow 100s linear infinite reverse;
 }
@@ -392,7 +410,7 @@ Contact
 </div>
 
 
-<div class="absolute right-[-40px] top-1/2 -translate-y-1/2 hidden lg:block">
+<div class="absolute right-[45px] top-1/2 -translate-y-1/2 hidden lg:block">
 
 <div class="globe-wrap">
 
@@ -1383,13 +1401,40 @@ coastGeometry.setAttribute("position",new THREE.Float32BufferAttribute(coastSegm
 const coastlines = new THREE.LineSegments(coastGeometry,coastlineMaterial);
 globeGroup.add(coastlines);
 
-// Sample a modest, evenly-spaced set of node positions across all
-// coastlines regardless of dataset density (~65 nodes total).
-const TARGET_NODES = 65;
-const nodeStep = Math.max(1, Math.floor(rawCoastPoints.length / TARGET_NODES));
+// Sample nodes proportionally from every coastline AND every border
+// chain, so small countries/islands still get at least one marker
+// instead of nodes clustering wherever the flattened array happened
+// to be densest.
+const TARGET_NODES = 150;
+const NODE_SOURCE_RINGS = CONTINENTS.concat(BORDERS);
+const totalSourcePoints = NODE_SOURCE_RINGS.reduce((a, r) => a + r.length, 0);
 
-rawCoastPoints.forEach((pt, i) => {
-if (i % nodeStep === 0) coastPoints.push(lonLatToVector3(pt[0], pt[1], 1));
+// Extra node density for specific regions the person asked to see filled in more
+const BOOST_REGIONS = [
+{lon:[-125,-66], lat:[24,50]},   // United States
+{lon:[-82,-34], lat:[-56,13]},   // South America
+{lon:[-13.5,-0.5], lat:[27,36]}, // Morocco
+{lon:[112,154], lat:[-44,-10]}   // Australia
+];
+
+function inBoostRegion(lon,lat){
+return BOOST_REGIONS.some(r => lon>=r.lon[0] && lon<=r.lon[1] && lat>=r.lat[0] && lat<=r.lat[1]);
+}
+
+NODE_SOURCE_RINGS.forEach(ring => {
+const share = Math.max(1, Math.round((ring.length / totalSourcePoints) * TARGET_NODES));
+const step = Math.max(1, Math.floor(ring.length / share));
+for (let i = 0; i < ring.length; i += step) {
+coastPoints.push(lonLatToVector3(ring[i][0], ring[i][1], 1));
+}
+
+// Denser extra pass within the boosted regions
+const boostStep = Math.max(1, Math.floor(step / 3));
+for (let i = 0; i < ring.length; i += boostStep) {
+const lon = ring[i][0];
+const lat = ring[i][1];
+if (inBoostRegion(lon,lat)) coastPoints.push(lonLatToVector3(lon,lat,1));
+}
 });
 
 
@@ -1490,7 +1535,7 @@ nodeSprites.push(sprite);
 
 // --- Arcs connecting nodes, like live data links ---
 
-const ARC_COUNT = 20;
+const ARC_COUNT = 42;
 const arcPulses = [];
 const arcSegmentPositions = [];
 
@@ -1548,29 +1593,7 @@ const arcs = new THREE.LineSegments(arcGeometry,arcMaterial);
 globeGroup.add(arcs);
 
 
-// --- Tilted HUD accent rings orbiting the globe ---
-
-const ringGeometry = new THREE.TorusGeometry(1.6,0.004,8,128);
-
-const ringMaterial = new THREE.MeshBasicMaterial({
-color:0x22d3ee,
-transparent:true,
-opacity:0.25,
-blending:THREE.AdditiveBlending
-});
-
-const ring = new THREE.Mesh(ringGeometry,ringMaterial);
-ring.rotation.x = Math.PI/2.4;
-scene.add(ring);
-
-const ring2Geometry = new THREE.TorusGeometry(1.4,0.003,8,128);
-const ring2 = new THREE.Mesh(ring2Geometry,ringMaterial.clone());
-ring2.rotation.x = -Math.PI/3;
-ring2.rotation.y = Math.PI/6;
-scene.add(ring2);
-
-
-// --- Orbiting satellite markers riding the HUD rings ---
+// --- Orbiting satellite markers (invisible orbit paths, matching the old ring tilts) ---
 
 function makeSatellite(radius, tiltX, tiltY, speed, phase, size){
 
@@ -1696,8 +1719,6 @@ requestAnimationFrame(animate);
 const t = clock.getElapsedTime();
 
 globeGroup.rotation.y += 0.0032;
-ring.rotation.z += 0.0009;
-ring2.rotation.z -= 0.0013;
 starfield.rotation.y += 0.00015;
 starfieldFar.rotation.y -= 0.00008;
 
