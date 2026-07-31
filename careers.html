@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Careers | Matlas Solutions</title>
+
+<meta name="description" content="Careers at Matlas Solutions, a Virginia-based government IT and engineering contractor. No open positions right now, but we want to hear from IT, engineering, and staffing professionals.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+<style>
+
+html {
+scroll-behavior:smooth;
+}
+
+body {
+font-family:'Inter',sans-serif;
+}
+
+
+/* Animations */
+
+.fade-in {
+opacity:0;
+transform:translateY(20px) !important;
+transition-property:opacity,transform !important;
+transition-duration:.8s !important;
+transition-timing-function:cubic-bezier(.16,.8,.3,1) !important;
+transition-delay:0s !important;
+}
+
+.fade-in.show {
+opacity:1;
+transform:translateY(0) !important;
+}
+
+
+/* Nav underline hover effect */
+
+.nav-underline {
+position:relative;
+}
+
+.nav-underline:after {
+content:"";
+position:absolute;
+left:0;
+bottom:-6px;
+width:100%;
+height:1px;
+background:#22d3ee;
+transform:scaleX(0);
+transform-origin:right;
+transition:transform .3s ease;
+}
+
+.nav-underline:hover:after,
+.nav-underline.active:after {
+transform:scaleX(1);
+transform-origin:left;
+}
+
+.nav-underline.active,
+.nav-link-external.active {
+color:#22d3ee !important;
+}
+
+
+/* Background grid */
+
+.grid-bg {
+
+background-image:
+
+linear-gradient(
+rgba(56,189,248,.08) 1px,
+transparent 1px
+),
+
+linear-gradient(
+90deg,
+rgba(56,189,248,.08) 1px,
+transparent 1px
+);
+
+
+background-size:60px 60px;
+
+}
+
+</style>
+
+
+<link rel="icon" type="image/png" href="favicon-32.png">
+
+<meta name="theme-color" content="#050816">
+
+
+</head>
+
+
+<body class="bg-gray-50 text-gray-800 overflow-x-hidden">
+
+
+<!-- HEADER -->
+
+<header class="bg-[#0b1220] shadow fixed w-full z-50 border-b border-white/5">
+
+<div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+
+
+<a href="index.html">
+
+<img src="logoo.png"
+alt="Matlas Solutions Logo"
+class="h-10 w-auto">
+
+</a>
+
+
+<nav class="hidden sm:flex space-x-8">
+
+
+<a href="index.html#about" class="nav-underline text-sm font-semibold uppercase tracking-wide text-gray-300 hover:text-cyan-400 transition">
+About
+</a>
+
+
+<a href="index.html#services" class="nav-underline text-sm font-semibold uppercase tracking-wide text-gray-300 hover:text-cyan-400 transition">
+Services
+</a>
+
+
+<a href="index.html#capabilities" class="nav-underline text-sm font-semibold uppercase tracking-wide text-gray-300 hover:text-cyan-400 transition">
+Capabilities
+</a>
+
+
+<a href="careers.html" class="nav-underline active text-sm font-semibold uppercase tracking-wide text-gray-300 transition">
+Careers
+</a>
+
+
+<a href="index.html#contact" class="nav-underline text-sm font-semibold uppercase tracking-wide text-gray-300 hover:text-cyan-400 transition">
+Contact
+</a>
+
+
+</nav>
+
+
+<button id="mobile-menu-button"
+class="sm:hidden text-gray-200">
+
+<svg class="w-7 h-7"
+fill="none"
+stroke="currentColor"
+viewBox="0 0 24 24">
+
+<path stroke-linecap="round"
+stroke-linejoin="round"
+stroke-width="2"
+d="M4 6h16M4 12h16M4 18h16"/>
+
+</svg>
+
+
+</button>
+
+
+</div>
+
+
+<nav id="mobile-menu"
+class="hidden sm:hidden bg-[#0b1220] border-t border-white/5 shadow p-5 space-y-3">
+
+
+<a href="index.html#about" class="block text-gray-300 hover:text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
+About
+</a>
+
+
+<a href="index.html#services" class="block text-gray-300 hover:text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
+Services
+</a>
+
+
+<a href="index.html#capabilities" class="block text-gray-300 hover:text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
+Capabilities
+</a>
+
+
+<a href="careers.html" class="block text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
+Careers
+</a>
+
+
+<a href="index.html#contact" class="block text-gray-300 hover:text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
+Contact
+</a>
+
+
+</nav>
+
+
+</header>
+
+
+<!-- CAREERS HERO -->
+
+<section class="relative overflow-hidden bg-[#050816] text-white px-6 pt-40 pb-24">
+
+<div class="absolute inset-0 grid-bg"></div>
+
+<div class="absolute w-[600px] h-[600px] bg-cyan-400 opacity-10 blur-3xl rounded-full -right-40 -top-40"></div>
+
+<div class="relative z-10 max-w-3xl mx-auto text-center">
+
+<div class="inline-block mb-5 px-4 py-2 border border-cyan-400 rounded-full text-cyan-300 text-sm tracking-widest font-semibold fade-in">
+
+JOIN OUR TEAM
+
+</div>
+
+<h1 class="text-4xl sm:text-5xl font-extrabold leading-tight fade-in">
+
+Careers at
+<span class="text-cyan-400">Matlas Solutions</span>
+
+</h1>
+
+<p class="mt-6 text-lg text-gray-300 max-w-2xl mx-auto fade-in">
+
+We're a growing Virginia-based government contractor built on people
+who care about the mission. If that sounds like you, we'd like to
+know who you are before we have a specific role to offer.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- CAREERS CONTENT -->
+
+<section class="relative overflow-hidden py-24 px-6 bg-white">
+
+<div class="absolute w-[500px] h-[500px] bg-cyan-400 opacity-[0.07] blur-3xl rounded-full -left-40 -top-20 pointer-events-none"></div>
+
+<div class="absolute w-[400px] h-[400px] bg-blue-500 opacity-[0.06] blur-3xl rounded-full -right-32 -bottom-20 pointer-events-none"></div>
+
+<div class="relative z-10">
+
+
+<div class="max-w-2xl mx-auto mb-14 fade-in">
+
+<div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center">
+
+<div class="text-3xl mb-3">
+👋
+</div>
+
+<h3 class="text-xl font-bold mb-2">
+No Open Positions Right Now
+</h3>
+
+<p class="text-gray-600">
+
+We don't have any active openings at the moment, but as a growing
+small business we expect that to change. If you're an IT, engineering,
+or technical staffing professional interested in supporting federal,
+state, local, or defense missions, submit your information below and
+we'll reach out when a role fits.
+
+</p>
+
+</div>
+
+</div>
+
+
+<div class="max-w-lg mx-auto fade-in">
+
+
+<form id="careers-form"
+class="bg-gray-50 rounded-xl shadow-md p-8 space-y-5">
+
+
+<input
+type="text"
+name="name"
+placeholder="Full Name"
+required
+class="w-full p-3 rounded border text-gray-900">
+
+
+
+<input
+type="email"
+name="email"
+placeholder="Email"
+required
+class="w-full p-3 rounded border text-gray-900">
+
+
+
+<select
+name="area_of_interest"
+required
+class="w-full p-3 rounded border text-gray-900 bg-white">
+
+<option value="" disabled selected>
+Area of Interest
+</option>
+
+<option value="IT Infrastructure & Operations">
+IT Infrastructure & Operations
+</option>
+
+<option value="Systems Engineering">
+Systems Engineering
+</option>
+
+<option value="Cybersecurity">
+Cybersecurity
+</option>
+
+<option value="Cloud & Infrastructure">
+Cloud & Infrastructure
+</option>
+
+<option value="Technical Staffing / Recruiting">
+Technical Staffing / Recruiting
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+
+
+<input
+type="text"
+name="linkedin_or_resume"
+placeholder="LinkedIn profile or resume link (optional)"
+class="w-full p-3 rounded border text-gray-900">
+
+
+
+<textarea
+name="message"
+placeholder="Tell us a bit about your background and what you're looking for"
+rows="4"
+required
+class="w-full p-3 rounded border text-gray-900"></textarea>
+
+
+<input type="hidden" name="_subject" value="New Careers Interest Submission">
+
+
+<button
+type="submit"
+class="w-full bg-blue-700 text-white py-3 rounded font-semibold hover:bg-blue-600 transition">
+
+Submit Your Information
+
+</button>
+
+
+
+<p id="careers-success-msg"
+class="hidden text-green-600 text-center">
+
+Thanks for reaching out! We'll keep your information on file and
+contact you if a matching opportunity opens up.
+
+</p>
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- FOOTER -->
+
+
+<footer class="bg-[#050816] text-gray-400 py-10 border-t border-white/5">
+
+
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+
+
+<div>
+
+
+<h3 class="text-white font-semibold mb-3">
+
+Matlas Solutions
+
+</h3>
+
+
+<p>
+
+Mission-focused technology solutions
+for government and defense organizations.
+
+</p>
+
+
+</div>
+
+
+
+<div>
+
+
+<h3 class="text-white font-semibold mb-3">
+
+Quick Links
+
+</h3>
+
+
+<ul class="space-y-2">
+
+
+<li>
+
+<a href="index.html#about"
+class="hover:text-white">
+
+About
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="index.html#services"
+class="hover:text-white">
+
+Services
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="index.html#capabilities"
+class="hover:text-white">
+
+Capabilities
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="careers.html"
+class="hover:text-white">
+
+Careers
+
+</a>
+
+</li>
+
+
+<li>
+
+<a href="index.html#contact"
+class="hover:text-white">
+
+Contact
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+
+<div>
+
+
+<h3 class="text-white font-semibold mb-3">
+
+Contracting
+
+</h3>
+
+
+<p>
+SAM.gov Registered
+</p>
+
+
+<p>
+Virginia-Based Small Business
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="text-center mt-8 text-sm">
+
+© 2026 Matlas LLC. All rights reserved.
+
+</div>
+
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+
+// Mobile menu
+
+const menuButton =
+document.getElementById("mobile-menu-button");
+
+
+const mobileMenu =
+document.getElementById("mobile-menu");
+
+
+
+menuButton.addEventListener("click",()=>{
+
+mobileMenu.classList.toggle("hidden");
+
+});
+
+
+
+
+// Scroll animations
+
+
+const animatedElements =
+document.querySelectorAll(".fade-in");
+
+
+const observer =
+new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+observer.unobserve(entry.target);
+
+}
+
+});
+
+},
+
+{
+
+threshold:.15
+
+}
+
+);
+
+
+animatedElements.forEach(el=>{
+
+observer.observe(el);
+
+});
+
+
+
+
+// Careers General Interest Form
+
+
+const careersForm =
+document.getElementById("careers-form");
+
+
+careersForm.addEventListener("submit",function(e){
+
+
+e.preventDefault();
+
+
+const careersData =
+new FormData(careersForm);
+
+
+fetch(
+
+"https://formspree.io/f/manvqaqj",
+
+{
+
+method:"POST",
+
+body:careersData,
+
+headers:{
+
+"Accept":"application/json"
+
+}
+
+}
+
+)
+
+
+.then(response=>{
+
+
+if(response.ok){
+
+
+document
+.getElementById("careers-success-msg")
+.classList
+.remove("hidden");
+
+
+careersForm.reset();
+
+
+}
+
+else{
+
+
+alert(
+"There was a problem sending your information."
+);
+
+
+}
+
+
+})
+
+
+.catch(()=>{
+
+
+alert(
+"There was a problem sending your information."
+);
+
+
+});
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
