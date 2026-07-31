@@ -79,8 +79,10 @@ opacity:1;
 
 /* Gentle cascade across the three capability cards instead of all popping at once */
 #services .grid > div:nth-child(1) { transition-delay:0s !important; }
-#services .grid > div:nth-child(2) { transition-delay:.12s !important; }
-#services .grid > div:nth-child(3) { transition-delay:.24s !important; }
+#services .grid > div:nth-child(2) { transition-delay:.1s !important; }
+#services .grid > div:nth-child(3) { transition-delay:.2s !important; }
+#services .grid > div:nth-child(4) { transition-delay:.3s !important; }
+#services .grid > div:nth-child(5) { transition-delay:.4s !important; }
 
 
 /* Digital Earth */
@@ -267,6 +269,37 @@ animation:scanMove 5s ease-in-out infinite;
 }
 
 
+/* Nav underline hover effect */
+
+.nav-underline {
+position:relative;
+}
+
+.nav-underline:after {
+content:"";
+position:absolute;
+left:0;
+bottom:-6px;
+width:100%;
+height:1px;
+background:#22d3ee;
+transform:scaleX(0);
+transform-origin:right;
+transition:transform .3s ease;
+}
+
+.nav-underline:hover:after,
+.nav-underline.active:after {
+transform:scaleX(1);
+transform-origin:left;
+}
+
+.nav-underline.active,
+.nav-link-external.active {
+color:#22d3ee !important;
+}
+
+
 /* Background grid */
 
 .grid-bg {
@@ -306,9 +339,9 @@ background-size:60px 60px;
 
 <!-- HEADER -->
 
-<header class="bg-white shadow fixed w-full z-50">
+<header class="bg-[#0b1220] shadow fixed w-full z-50 border-b border-white/5">
 
-<div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+<div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
 
 
 <a href="#" id="logo">
@@ -323,27 +356,27 @@ class="h-10 w-auto">
 <nav class="hidden sm:flex space-x-8">
 
 
-<a href="#about" class="nav-link hover:text-blue-600">
+<a href="#about" data-nav="about" class="nav-link nav-underline text-sm font-semibold uppercase tracking-wide text-gray-300 hover:text-cyan-400 transition">
 About
 </a>
 
 
-<a href="#services" class="nav-link hover:text-blue-600">
+<a href="#services" data-nav="services" class="nav-link nav-underline text-sm font-semibold uppercase tracking-wide text-gray-300 hover:text-cyan-400 transition">
 Services
 </a>
 
 
-<a href="#capabilities" class="nav-link hover:text-blue-600">
+<a href="#capabilities" data-nav="capabilities" class="nav-link nav-underline text-sm font-semibold uppercase tracking-wide text-gray-300 hover:text-cyan-400 transition">
 Capabilities
 </a>
 
 
-<a href="#careers" class="nav-link hover:text-blue-600">
+<a href="careers.html" class="nav-link-external nav-underline text-sm font-semibold uppercase tracking-wide text-gray-300 hover:text-cyan-400 transition">
 Careers
 </a>
 
 
-<a href="#contact" class="nav-link hover:text-blue-600">
+<a href="#contact" data-nav="contact" class="nav-link nav-underline text-sm font-semibold uppercase tracking-wide text-gray-300 hover:text-cyan-400 transition">
 Contact
 </a>
 
@@ -352,7 +385,7 @@ Contact
 
 
 <button id="mobile-menu-button"
-class="sm:hidden">
+class="sm:hidden text-gray-200">
 
 <svg class="w-7 h-7"
 fill="none"
@@ -374,30 +407,30 @@ d="M4 6h16M4 12h16M4 18h16"/>
 
 
 <nav id="mobile-menu"
-class="hidden sm:hidden bg-white shadow p-5 space-y-3">
+class="hidden sm:hidden bg-[#0b1220] border-t border-white/5 shadow p-5 space-y-3">
 
 
-<a href="#about" class="nav-link block">
+<a href="#about" class="nav-link block text-gray-300 hover:text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
 About
 </a>
 
 
-<a href="#services" class="nav-link block">
+<a href="#services" class="nav-link block text-gray-300 hover:text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
 Services
 </a>
 
 
-<a href="#capabilities" class="nav-link block">
+<a href="#capabilities" class="nav-link block text-gray-300 hover:text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
 Capabilities
 </a>
 
 
-<a href="#careers" class="nav-link block">
+<a href="careers.html" class="nav-link-external block text-gray-300 hover:text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
 Careers
 </a>
 
 
-<a href="#contact" class="nav-link block">
+<a href="#contact" class="nav-link block text-gray-300 hover:text-cyan-400 font-semibold uppercase tracking-wide text-sm transition">
 Contact
 </a>
 
@@ -497,7 +530,13 @@ View Capabilities
 </section>
 <!-- ABOUT SECTION -->
 
-<section class="max-w-5xl mx-auto py-24 px-6" id="about">
+<section class="relative overflow-hidden py-24 px-6" id="about">
+
+<div class="absolute w-[500px] h-[500px] bg-cyan-400 opacity-[0.07] blur-3xl rounded-full -left-40 -top-20 pointer-events-none"></div>
+
+<div class="absolute w-[400px] h-[400px] bg-blue-500 opacity-[0.06] blur-3xl rounded-full -right-32 -bottom-20 pointer-events-none"></div>
+
+<div class="relative z-10 max-w-5xl mx-auto">
 
 <h2 class="text-4xl font-bold text-center mb-8 fade-in">
 About Matlas Solutions
@@ -526,6 +565,8 @@ of government organizations.
 
 </p>
 
+</div>
+
 </section>
 
 
@@ -534,8 +575,13 @@ of government organizations.
 
 <!-- SERVICES SECTION -->
 
-<section class="bg-gray-100 py-24 px-6" id="services">
+<section class="relative overflow-hidden bg-gray-100 py-24 px-6" id="services">
 
+<div class="absolute w-[550px] h-[550px] bg-cyan-400 opacity-[0.06] blur-3xl rounded-full -right-48 top-0 pointer-events-none"></div>
+
+<div class="absolute w-[450px] h-[450px] bg-blue-500 opacity-[0.06] blur-3xl rounded-full -left-40 bottom-0 pointer-events-none"></div>
+
+<div class="relative z-10">
 
 <h2 class="text-4xl font-bold text-center mb-14 fade-in">
 
@@ -545,19 +591,25 @@ Core Capabilities
 
 
 
-<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
+<div class="slide-left bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
 
+<div class="relative h-48">
 
-<!-- IT INFRASTRUCTURE -->
+<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Server room network cabling" class="w-full h-full object-cover">
 
-<div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2 slide-left">
+<div class="absolute inset-0" style="background:linear-gradient(160deg, rgba(5,8,22,.85), rgba(11,32,64,.55) 55%, rgba(34,211,238,.25))"></div>
 
+<div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#0b1220]/85 border border-cyan-400/50 flex items-center justify-center">
 
-<img
-src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31"
-alt="Enterprise IT Infrastructure"
-class="w-full h-48 object-cover">
+<svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><circle cx="7" cy="7" r="0.6" fill="currentColor" stroke="none"/><circle cx="7" cy="17" r="0.6" fill="currentColor" stroke="none"/>
+</svg>
+
+</div>
+
+</div>
 
 
 <div class="p-8">
@@ -565,16 +617,14 @@ class="w-full h-48 object-cover">
 
 <h3 class="text-xl font-bold text-center mb-3">
 
-Enterprise IT Infrastructure & Operations
+Enterprise IT Infrastructure &amp; Operations
 
 </h3>
 
 
 <p class="text-center text-gray-600">
 
-End-user computing, network support,
-systems administration, infrastructure management,
-and technology operations support.
+End-user computing, network support, systems administration, infrastructure management, and technology operations support.
 
 </p>
 
@@ -582,20 +632,23 @@ and technology operations support.
 </div>
 
 </div>
+<div class="slide-right bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
 
+<div class="relative h-48">
 
+<img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80" alt="Engineer reviewing technical systems" class="w-full h-full object-cover">
 
+<div class="absolute inset-0" style="background:linear-gradient(160deg, rgba(5,8,22,.85), rgba(11,32,64,.55) 55%, rgba(34,211,238,.25))"></div>
 
+<div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#0b1220]/85 border border-cyan-400/50 flex items-center justify-center">
 
-<!-- SYSTEMS ENGINEERING -->
+<svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2.5 12h3M18.5 12h3M4.9 19.1l2.1-2.1M17 7l2.1-2.1"/>
+</svg>
 
-<div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2 slide-right">
+</div>
 
-
-<img
-src="https://images.unsplash.com/photo-1581092160607-ee22621dd758"
-alt="Systems Engineering"
-class="w-full h-48 object-cover">
+</div>
 
 
 <div class="p-8">
@@ -603,16 +656,14 @@ class="w-full h-48 object-cover">
 
 <h3 class="text-xl font-bold text-center mb-3">
 
-Systems Engineering & Technical Services
+Systems Engineering &amp; Technical Services
 
 </h3>
 
 
 <p class="text-center text-gray-600">
 
-Technical documentation, systems integration,
-engineering support, and solutions designed
-for complex mission environments.
+Technical documentation, systems integration, engineering support, and solutions designed for complex mission environments.
 
 </p>
 
@@ -620,22 +671,140 @@ for complex mission environments.
 </div>
 
 </div>
+<div class="slide-left bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
+
+<div class="relative h-48">
+
+<img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="Teal lit security operations panel" class="w-full h-full object-cover">
+
+<div class="absolute inset-0" style="background:linear-gradient(160deg, rgba(5,8,22,.85), rgba(11,32,64,.55) 55%, rgba(34,211,238,.25))"></div>
+
+<div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#0b1220]/85 border border-cyan-400/50 flex items-center justify-center">
+
+<svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/>
+</svg>
+
+</div>
+
+</div>
 
 
+<div class="p-8">
 
 
+<h3 class="text-xl font-bold text-center mb-3">
+
+Cybersecurity &amp; Information Assurance
+
+</h3>
 
 
-<!-- TECHNICAL STAFFING -->
+<p class="text-center text-gray-600">
+
+Security-conscious system design, risk management framework support, and technology services built around federal compliance requirements.
+
+</p>
 
 
-<div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2 slide-left">
+</div>
+
+</div>
+<div class="slide-right bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
+
+<div class="relative h-48">
+
+<img src="https://images.unsplash.com/photo-1695668548342-c0c1ad479aee?auto=format&fit=crop&w=800&q=80" alt="Data center server rack" class="w-full h-full object-cover">
+
+<div class="absolute inset-0" style="background:linear-gradient(160deg, rgba(5,8,22,.85), rgba(11,32,64,.55) 55%, rgba(34,211,238,.25))"></div>
+
+<div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#0b1220]/85 border border-cyan-400/50 flex items-center justify-center">
+
+<svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M7 17a4 4 0 010-8 5 5 0 019.5-1.5A4 4 0 0118 17H7z"/>
+</svg>
+
+</div>
+
+</div>
 
 
-<img
-src="https://images.unsplash.com/photo-1556761175-b413da4baf72"
-alt="Technical Staffing Team"
-class="w-full h-48 object-cover">
+<div class="p-8">
+
+
+<h3 class="text-xl font-bold text-center mb-3">
+
+Cloud &amp; Infrastructure Modernization
+
+</h3>
+
+
+<p class="text-center text-gray-600">
+
+Cloud migration planning, hybrid environment support, and modernization strategies that keep legacy systems mission-ready.
+
+</p>
+
+
+</div>
+
+</div>
+<div class="slide-left bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
+
+<div class="relative h-48">
+
+<img src="https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?auto=format&fit=crop&w=800&q=80" alt="Team planning a project together" class="w-full h-full object-cover">
+
+<div class="absolute inset-0" style="background:linear-gradient(160deg, rgba(5,8,22,.85), rgba(11,32,64,.55) 55%, rgba(34,211,238,.25))"></div>
+
+<div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#0b1220]/85 border border-cyan-400/50 flex items-center justify-center">
+
+<svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 3v2a1 1 0 001 1h4a1 1 0 001-1V3"/><path d="M9 12l2 2 4-4"/>
+</svg>
+
+</div>
+
+</div>
+
+
+<div class="p-8">
+
+
+<h3 class="text-xl font-bold text-center mb-3">
+
+Program &amp; Project Management
+
+</h3>
+
+
+<p class="text-center text-gray-600">
+
+Schedule and cost control, risk tracking, and disciplined program execution across the full lifecycle of a contract.
+
+</p>
+
+
+</div>
+
+</div>
+<div class="slide-right bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
+
+<div class="relative h-48">
+
+<img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" alt="Team of technical staff collaborating" class="w-full h-full object-cover">
+
+<div class="absolute inset-0" style="background:linear-gradient(160deg, rgba(5,8,22,.85), rgba(11,32,64,.55) 55%, rgba(34,211,238,.25))"></div>
+
+<div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#0b1220]/85 border border-cyan-400/50 flex items-center justify-center">
+
+<svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="9.5" r="2.3"/><path d="M2 20c0-3.1 2.6-5.3 6-5.3s6 2.2 6 5.3M14.3 20c0-2.3 1.9-4.1 4.2-4.1s4 1.8 4 4.1"/>
+</svg>
+
+</div>
+
+</div>
 
 
 <div class="p-8">
@@ -650,9 +819,7 @@ Mission-Focused Technical Staffing
 
 <p class="text-center text-gray-600">
 
-Providing qualified IT and engineering professionals
-to support short-term projects and long-term
-government workforce requirements.
+Providing qualified IT and engineering professionals to support short-term projects and long-term government workforce requirements.
 
 </p>
 
@@ -661,11 +828,14 @@ government workforce requirements.
 
 </div>
 
+</div>
 
 </div>
 
-
 </section>
+
+
+
 
 
 
@@ -675,8 +845,13 @@ government workforce requirements.
 <!-- CAPABILITIES SECTION -->
 
 
-<section class="max-w-5xl mx-auto py-24 px-6" id="capabilities">
+<section class="relative overflow-hidden py-24 px-6" id="capabilities">
 
+<div class="absolute w-[480px] h-[480px] bg-cyan-400 opacity-[0.07] blur-3xl rounded-full -left-32 -top-24 pointer-events-none"></div>
+
+<div class="absolute w-[420px] h-[420px] bg-blue-500 opacity-[0.06] blur-3xl rounded-full -right-32 -bottom-24 pointer-events-none"></div>
+
+<div class="relative z-10 max-w-5xl mx-auto">
 
 <h2 class="text-4xl font-bold text-center mb-10 fade-in">
 
@@ -753,157 +928,11 @@ Scalable Technical Workforce Solutions
 
 </div>
 
+</div>
 
 </section>
 
 
-<!-- CAREERS SECTION -->
-
-<section class="bg-white py-24 px-6" id="careers">
-
-
-<h2 class="text-4xl font-bold text-center mb-6 fade-in">
-
-Careers at Matlas Solutions
-
-</h2>
-
-
-<p class="text-center text-gray-600 text-lg max-w-2xl mx-auto mb-14 fade-in">
-
-We're a growing Virginia-based government contractor built on people who
-care about the mission. If that sounds like you, we'd like to know who
-you are before we have a specific role to offer.
-
-</p>
-
-
-<div class="max-w-2xl mx-auto mb-14 fade-in">
-
-<div class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center">
-
-<div class="text-3xl mb-3">
-👋
-</div>
-
-<h3 class="text-xl font-bold mb-2">
-No Open Positions Right Now
-</h3>
-
-<p class="text-gray-600">
-
-We don't have any active openings at the moment, but as a growing
-small business we expect that to change. If you're an IT, engineering,
-or technical staffing professional interested in supporting federal,
-state, local, or defense missions, submit your information below and
-we'll reach out when a role fits.
-
-</p>
-
-</div>
-
-</div>
-
-
-<div class="max-w-lg mx-auto fade-in">
-
-
-<form id="careers-form"
-class="bg-gray-50 rounded-xl shadow-md p-8 space-y-5">
-
-
-<input
-type="text"
-name="name"
-placeholder="Full Name"
-required
-class="w-full p-3 rounded border text-gray-900">
-
-
-
-<input
-type="email"
-name="email"
-placeholder="Email"
-required
-class="w-full p-3 rounded border text-gray-900">
-
-
-
-<select
-name="area_of_interest"
-required
-class="w-full p-3 rounded border text-gray-900 bg-white">
-
-<option value="" disabled selected>
-Area of Interest
-</option>
-
-<option value="IT Infrastructure & Operations">
-IT Infrastructure & Operations
-</option>
-
-<option value="Systems Engineering">
-Systems Engineering
-</option>
-
-<option value="Technical Staffing / Recruiting">
-Technical Staffing / Recruiting
-</option>
-
-<option value="Other">
-Other
-</option>
-
-</select>
-
-
-
-<input
-type="text"
-name="linkedin_or_resume"
-placeholder="LinkedIn profile or resume link (optional)"
-class="w-full p-3 rounded border text-gray-900">
-
-
-
-<textarea
-name="message"
-placeholder="Tell us a bit about your background and what you're looking for"
-rows="4"
-required
-class="w-full p-3 rounded border text-gray-900"></textarea>
-
-
-<input type="hidden" name="_subject" value="New Careers Interest Submission">
-
-
-<button
-type="submit"
-class="w-full bg-blue-700 text-white py-3 rounded font-semibold hover:bg-blue-600 transition">
-
-Submit Your Information
-
-</button>
-
-
-
-<p id="careers-success-msg"
-class="hidden text-green-600 text-center">
-
-Thanks for reaching out! We'll keep your information on file and
-contact you if a matching opportunity opens up.
-
-</p>
-
-
-</form>
-
-
-</div>
-
-
-</section>
 <!-- CONTACT SECTION -->
 
 <section class="bg-[#0b1f3a] text-white py-24 px-6" id="contact">
@@ -1030,7 +1059,7 @@ Thank you! Your message has been sent.
 <!-- FOOTER -->
 
 
-<footer class="bg-gray-950 text-gray-400 py-10">
+<footer class="bg-[#050816] text-gray-400 py-10 border-t border-white/5">
 
 
 <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
@@ -1111,8 +1140,8 @@ Capabilities
 
 <li>
 
-<a href="#careers"
-class="footer-link hover:text-white">
+<a href="careers.html"
+class="footer-link-external hover:text-white">
 
 Careers
 
@@ -1337,6 +1366,58 @@ observer.observe(el);
 
 
 
+// Scroll-spy: highlight the nav tab matching the section in view
+
+const spySections =
+document.querySelectorAll("section[id]");
+
+const navSpyLinks =
+document.querySelectorAll("[data-nav]");
+
+const spyObserver =
+new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+const id = entry.target.getAttribute("id");
+
+navSpyLinks.forEach(link=>{
+
+link.classList.toggle(
+"active",
+link.getAttribute("data-nav") === id
+);
+
+});
+
+}
+
+});
+
+},
+
+{
+
+rootMargin:"-45% 0px -50% 0px"
+
+}
+
+);
+
+
+spySections.forEach(section=>{
+
+spyObserver.observe(section);
+
+});
+
+
+
+
 
 
 
@@ -1418,89 +1499,6 @@ alert(
 
 alert(
 "There was a problem sending your message."
-);
-
-
-});
-
-
-});
-
-
-// Careers General Interest Form
-
-
-const careersForm =
-document.getElementById("careers-form");
-
-
-careersForm.addEventListener("submit",function(e){
-
-
-e.preventDefault();
-
-
-const careersData =
-new FormData(careersForm);
-
-
-fetch(
-
-"https://formspree.io/f/manvqaqj",
-
-{
-
-method:"POST",
-
-body:careersData,
-
-headers:{
-
-"Accept":"application/json"
-
-}
-
-}
-
-)
-
-
-.then(response=>{
-
-
-if(response.ok){
-
-
-document
-.getElementById("careers-success-msg")
-.classList
-.remove("hidden");
-
-
-careersForm.reset();
-
-
-}
-
-else{
-
-
-alert(
-"There was a problem sending your information."
-);
-
-
-}
-
-
-})
-
-
-.catch(()=>{
-
-
-alert(
-"There was a problem sending your information."
 );
 
 
