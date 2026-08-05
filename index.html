@@ -187,8 +187,8 @@ background-position:1000px center;
 
 .globe-wrap {
 position:relative;
-width:700px;
-height:700px;
+width:660px;
+height:660px;
 }
 
 .globe-wrap canvas {
@@ -411,11 +411,11 @@ Contact
 </div>
 
 
-<div class="absolute right-[90px] top-1/2 -translate-y-[60%] hidden lg:block">
+<div class="absolute right-[70px] top-1/2 -translate-y-[60%] hidden lg:block">
 
 <div class="globe-wrap">
 
-<canvas id="earthCanvas" width="700" height="700"></canvas>
+<canvas id="earthCanvas" width="660" height="660"></canvas>
 
 <div class="globe-scan"></div>
 
@@ -1619,7 +1619,7 @@ alpha:true,
 antialias:true
 });
 
-renderer.setSize(700,700);
+renderer.setSize(660,660);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 
 
@@ -1644,19 +1644,64 @@ const core = new THREE.Mesh(coreGeometry,coreMaterial);
 globeGroup.add(core);
 
 
-// --- Faint lat/long graticule (kept subtle so coastlines read clearly) ---
+// --- Faint lat/long graticule (built from explicit circles so it's
+// clean horizontal/vertical lines only, not a triangulated wireframe
+// with diagonal edges) ---
 
-const wireGeometry = new THREE.SphereGeometry(1,24,16);
+const graticulePositions = [];
+const gratRadius = 1;
+const gratSegments = 48;
 
-const wireMaterial = new THREE.MeshBasicMaterial({
+for(let lat=-60;lat<=60;lat+=20){
+
+const phi = THREE.MathUtils.degToRad(90-lat);
+const y = gratRadius*Math.cos(phi);
+const r = gratRadius*Math.sin(phi);
+
+for(let i=0;i<gratSegments;i++){
+
+const t0 = (i/gratSegments)*Math.PI*2;
+const t1 = ((i+1)/gratSegments)*Math.PI*2;
+
+graticulePositions.push(r*Math.cos(t0),y,r*Math.sin(t0));
+graticulePositions.push(r*Math.cos(t1),y,r*Math.sin(t1));
+
+}
+
+}
+
+for(let lon=0;lon<360;lon+=20){
+
+const thetaLon = THREE.MathUtils.degToRad(lon);
+
+for(let i=0;i<gratSegments;i++){
+
+const p0 = (i/gratSegments)*Math.PI;
+const p1 = ((i+1)/gratSegments)*Math.PI;
+
+const y0 = gratRadius*Math.cos(p0);
+const r0 = gratRadius*Math.sin(p0);
+const y1 = gratRadius*Math.cos(p1);
+const r1 = gratRadius*Math.sin(p1);
+
+graticulePositions.push(r0*Math.cos(thetaLon),y0,r0*Math.sin(thetaLon));
+graticulePositions.push(r1*Math.cos(thetaLon),y1,r1*Math.sin(thetaLon));
+
+}
+
+}
+
+const wireGeometry = new THREE.BufferGeometry();
+wireGeometry.setAttribute("position",new THREE.Float32BufferAttribute(graticulePositions,3));
+
+const wireMaterial = new THREE.LineBasicMaterial({
 color:0x22d3ee,
-wireframe:true,
 transparent:true,
 opacity:0.08,
 blending:THREE.AdditiveBlending
 });
 
-const wireframeSphere = new THREE.Mesh(wireGeometry,wireMaterial);
+const wireframeSphere = new THREE.LineSegments(wireGeometry,wireMaterial);
 globeGroup.add(wireframeSphere);
 
 
@@ -2047,7 +2092,7 @@ requestAnimationFrame(animate);
 
 const t = clock.getElapsedTime();
 
-globeGroup.rotation.y += 0.0026;
+globeGroup.rotation.y += 0.002;
 starfield.rotation.y += 0.00015;
 starfieldFar.rotation.y -= 0.00008;
 
