@@ -8,7 +8,7 @@
 
 <title>Matlas Solutions | Government IT & Engineering Services</title>
 
-<meta name="description" content="Matlas Solutions provides secure IT infrastructure, engineering services, cloud solutions, and technical staffing support for government and defense organizations.">
+<meta name="description" content="Matlas Solutions provides IT and engineering staffing, secure infrastructure, and cloud solutions for government and defense organizations.">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -31,58 +31,58 @@ font-family:'Inter',sans-serif;
 
 .fade-in {
 opacity:0;
-transform:translateY(20px) !important;
-transition-property:opacity,transform !important;
-transition-duration:.8s !important;
+translate:0 20px !important;
+transition-property:opacity,translate,transform !important;
+transition-duration:.8s,.8s,.2s !important;
 transition-timing-function:cubic-bezier(.16,.8,.3,1) !important;
 transition-delay:0s !important;
 }
 
 .fade-in.show {
 opacity:1;
-transform:translateY(0) !important;
+translate:0 0 !important;
 }
 
 
-/* slide-left/right use Tailwind's own --tw-translate-x variable (rather than
-setting "transform" directly) so they compose cleanly with the hover lift
-(hover:-translate-y-2) already on these cards instead of fighting it. */
+/* slide-left/right use the standalone CSS "translate" property (not
+"transform") for the entrance slide, and give "transform" its own fast
+duration for hover:-translate-y-2. That way the slow entrance animation
+never shares timing with the hover response, so every card lifts on
+hover at the same, immediate speed regardless of entrance order. */
 
 .slide-left {
 opacity:0;
---tw-translate-x:-30px !important;
-transition-property:opacity,transform !important;
-transition-duration:.8s !important;
+translate:-30px 0 !important;
+transition-property:opacity,translate,transform !important;
+transition-duration:.8s,.8s,.2s !important;
 transition-timing-function:cubic-bezier(.16,.8,.3,1) !important;
 transition-delay:0s !important;
 }
 
 .slide-left.show {
 opacity:1;
---tw-translate-x:0px !important;
+translate:0px 0 !important;
 }
 
 
 .slide-right {
 opacity:0;
---tw-translate-x:30px !important;
-transition-property:opacity,transform !important;
-transition-duration:.8s !important;
+translate:30px 0 !important;
+transition-property:opacity,translate,transform !important;
+transition-duration:.8s,.8s,.2s !important;
 transition-timing-function:cubic-bezier(.16,.8,.3,1) !important;
 transition-delay:0s !important;
 }
 
 .slide-right.show {
 opacity:1;
---tw-translate-x:0px !important;
+translate:0px 0 !important;
 }
 
-/* Gentle cascade across the three capability cards instead of all popping at once */
-#services .grid > div:nth-child(1) { transition-delay:0s !important; }
-#services .grid > div:nth-child(2) { transition-delay:.1s !important; }
-#services .grid > div:nth-child(3) { transition-delay:.2s !important; }
-#services .grid > div:nth-child(4) { transition-delay:.3s !important; }
-#services .grid > div:nth-child(5) { transition-delay:.4s !important; }
+/* Capability card entrance cascade is staggered via JS (see the
+IntersectionObserver below) rather than CSS transition-delay, so
+each card's hover response stays instant regardless of entrance order. */
+
 
 
 /* Digital Earth */
@@ -187,56 +187,14 @@ background-position:1000px center;
 
 .globe-wrap {
 position:relative;
-width:520px;
-height:520px;
+width:700px;
+height:700px;
 }
 
 .globe-wrap canvas {
 position:relative;
 z-index:2;
 filter:drop-shadow(0 0 40px rgba(34,211,238,.35));
-}
-
-.globe-ring {
-position:absolute;
-border-radius:50%;
-pointer-events:none;
-}
-
-.ring-1 {
-inset:-22px;
-border:1px dashed rgba(34,211,238,.28);
-animation:spinSlow 70s linear infinite;
-}
-
-.ring-1:before,
-.ring-1:after {
-content:"";
-position:absolute;
-width:6px;
-height:6px;
-border-radius:50%;
-background:#22d3ee;
-box-shadow:0 0 8px 2px rgba(34,211,238,.9);
-top:50%;
-left:-3px;
-transform:translateY(-50%);
-}
-
-.ring-1:after {
-left:auto;
-right:-3px;
-}
-
-.ring-2 {
-inset:-38px;
-border:1px solid rgba(34,211,238,.14);
-animation:spinSlow 100s linear infinite reverse;
-}
-
-@keyframes spinSlow {
-from { transform:rotate(0deg); }
-to { transform:rotate(360deg); }
 }
 
 .globe-scan {
@@ -341,7 +299,7 @@ background-size:60px 60px;
 
 <header class="relative overflow-hidden bg-[#0b1220] shadow fixed w-full z-50 border-b border-white/5">
 
-<div class="px-4 h-16 flex justify-between items-center relative z-10">
+<div class="px-8 h-16 flex justify-between items-center relative z-10">
 
 
 <a href="#" id="logo" class="flex items-center">
@@ -443,7 +401,7 @@ Contact
 
 <!-- HERO -->
 
-<section class="relative h-screen flex items-center overflow-hidden bg-[#050816] text-white px-6 pb-20">
+<section class="relative h-screen flex items-center overflow-hidden bg-[#050816] text-white px-6 pb-32">
 
 
 <div class="absolute inset-0 grid-bg"></div>
@@ -453,14 +411,11 @@ Contact
 </div>
 
 
-<div class="absolute right-[45px] top-1/2 -translate-y-[58%] hidden lg:block">
+<div class="absolute right-[90px] top-1/2 -translate-y-[60%] hidden lg:block">
 
 <div class="globe-wrap">
 
-<div class="globe-ring ring-1"></div>
-<div class="globe-ring ring-2"></div>
-
-<canvas id="earthCanvas" width="520" height="520"></canvas>
+<canvas id="earthCanvas" width="700" height="700"></canvas>
 
 <div class="globe-scan"></div>
 
@@ -481,12 +436,12 @@ IT • ENGINEERING • TECHNICAL STAFFING
 
 <h1 class="text-5xl sm:text-6xl font-extrabold leading-tight fade-in">
 
-Mission-Critical IT Solutions
+Mission-Critical IT Staffing &amp; Solutions
 
 <br>
 
 <span class="text-cyan-400">
-for Government & Defense
+for Government &amp; Defense
 </span>
 
 </h1>
@@ -494,10 +449,10 @@ for Government & Defense
 
 <p class="mt-6 text-xl text-gray-300 max-w-2xl fade-in">
 
-Matlas Solutions delivers secure technology services,
-enterprise infrastructure support, and technical staffing
-solutions that help government organizations achieve
-operational readiness and mission success.
+Matlas Solutions places qualified IT and engineering
+talent while delivering secure technology services and
+enterprise infrastructure support that help government
+organizations achieve operational readiness and mission success.
 
 </p>
 
@@ -544,7 +499,7 @@ View Capabilities
 
 <div class="text-center mb-14">
 
-<div class="inline-block mb-4 px-4 py-2 border border-cyan-400 rounded-full text-cyan-400 text-sm tracking-widest font-semibold fade-in">
+<div class="inline-block mb-4 px-4 py-2 border border-sky-700 rounded-full text-sky-700 text-sm tracking-widest font-semibold fade-in">
 
 WHO WE ARE
 
@@ -552,7 +507,7 @@ WHO WE ARE
 
 <h2 class="text-4xl font-extrabold fade-in">
 
-About <span class="text-cyan-400">Matlas Solutions</span>
+About <span class="text-sky-700">Matlas Solutions</span>
 
 </h2>
 
@@ -566,16 +521,17 @@ About <span class="text-cyan-400">Matlas Solutions</span>
 
 <p class="text-lg text-gray-600 leading-loose font-light">
 
-Matlas Solutions is a Virginia-based technology services company
-focused on supporting federal, state, local, and defense organizations
-through secure, reliable, and innovative IT solutions.
+Matlas Solutions is a Virginia-based technical staffing and IT
+services company focused on connecting federal, state, local, and
+defense organizations with the talent they need to get the mission done.
 
 </p>
 
 <p class="mt-5 text-lg text-gray-600 leading-loose font-light">
 
-We provide enterprise IT support, infrastructure services, systems
-engineering, and technical workforce solutions designed to improve
+We place qualified IT and engineering professionals on short-term
+projects and long-term contracts, backed by enterprise IT support,
+infrastructure services, and systems engineering designed to improve
 operational efficiency and help our customers achieve their mission
 objectives.
 
@@ -585,8 +541,8 @@ objectives.
 
 As a registered government contractor, Matlas Solutions is committed
 to building trusted partnerships and delivering responsive,
-high-quality technology services that meet the evolving needs
-of government organizations.
+high-quality staffing and technology services that meet the evolving
+needs of government organizations.
 
 </p>
 
@@ -608,7 +564,7 @@ At a Glance
 <svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
 </div>
 <div>
-<p class="font-semibold text-gray-900">Headquartered in Virginia</p>
+<p class="font-semibold text-gray-900">Headquartered in Alexandria, Virginia</p>
 <p class="text-sm text-gray-500">Serving clients nationwide</p>
 </div>
 </div>
@@ -683,6 +639,45 @@ Capabilities Built for the Mission
 
 <div class="relative h-48">
 
+<img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" alt="Team of technical staff collaborating" class="w-full h-full object-cover">
+
+<div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#0b1220]/85 border border-cyan-400/50 flex items-center justify-center">
+
+<svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.2"/><circle cx="19" cy="9" r="2.2"/><path d="M7 21c0-3.3 2.2-5.5 5-5.5s5 2.2 5 5.5"/><path d="M1.5 21c0-2.5 1.5-4.3 3.5-4.3"/><path d="M22.5 21c0-2.5-1.5-4.3-3.5-4.3"/>
+</svg>
+
+</div>
+
+</div>
+
+
+<div class="p-8">
+
+
+<h3 class="text-xl font-bold text-center mb-3">
+
+Mission-Focused Technical Staffing
+
+</h3>
+
+
+<p class="text-center text-gray-600">
+
+Providing qualified IT and engineering professionals to support short-term projects and long-term government workforce requirements.
+
+</p>
+
+
+</div>
+
+</div>
+
+
+<div class="slide-right bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
+
+<div class="relative h-48">
+
 <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Server room network cabling" class="w-full h-full object-cover">
 
 <div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#0b1220]/85 border border-cyan-400/50 flex items-center justify-center">
@@ -716,7 +711,7 @@ End-user computing, network support, systems administration, infrastructure mana
 </div>
 
 </div>
-<div class="slide-right bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
+<div class="slide-left bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
 
 <div class="relative h-48">
 
@@ -753,7 +748,7 @@ Technical documentation, systems integration, engineering support, and solutions
 </div>
 
 </div>
-<div class="slide-left bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
+<div class="slide-right bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
 
 <div class="relative h-48">
 
@@ -790,7 +785,7 @@ Security-conscious system design, risk management framework support, and technol
 </div>
 
 </div>
-<div class="slide-right bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
+<div class="slide-left bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
 
 <div class="relative h-48">
 
@@ -827,7 +822,7 @@ Cloud migration planning, hybrid environment support, and modernization strategi
 </div>
 
 </div>
-<div class="slide-left bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
+<div class="slide-right bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
 
 <div class="relative h-48">
 
@@ -857,43 +852,6 @@ Program &amp; Project Management
 <p class="text-center text-gray-600">
 
 Schedule and cost control, risk tracking, and disciplined program execution across the full lifecycle of a contract.
-
-</p>
-
-
-</div>
-
-</div>
-<div class="slide-right bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition transform hover:-translate-y-2">
-
-<div class="relative h-48">
-
-<img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" alt="Team of technical staff collaborating" class="w-full h-full object-cover">
-
-<div class="absolute top-4 left-4 w-11 h-11 rounded-full bg-[#0b1220]/85 border border-cyan-400/50 flex items-center justify-center">
-
-<svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-<circle cx="12" cy="7" r="3"/><circle cx="5" cy="9" r="2.2"/><circle cx="19" cy="9" r="2.2"/><path d="M7 21c0-3.3 2.2-5.5 5-5.5s5 2.2 5 5.5"/><path d="M1.5 21c0-2.5 1.5-4.3 3.5-4.3"/><path d="M22.5 21c0-2.5-1.5-4.3-3.5-4.3"/>
-</svg>
-
-</div>
-
-</div>
-
-
-<div class="p-8">
-
-
-<h3 class="text-xl font-bold text-center mb-3">
-
-Mission-Focused Technical Staffing
-
-</h3>
-
-
-<p class="text-center text-gray-600">
-
-Providing qualified IT and engineering professionals to support short-term projects and long-term government workforce requirements.
 
 </p>
 
@@ -933,7 +891,7 @@ Providing qualified IT and engineering professionals to support short-term proje
 
 <div class="text-center mb-14">
 
-<div class="inline-block mb-4 px-4 py-2 border border-cyan-400 rounded-full text-cyan-400 text-sm tracking-widest font-semibold fade-in">
+<div class="inline-block mb-4 px-4 py-2 border border-sky-700 rounded-full text-sky-700 text-sm tracking-widest font-semibold fade-in">
 
 COMPLIANCE &amp; REGISTRATION
 
@@ -1058,14 +1016,9 @@ Connect with our team.
 <div class="text-center mb-10 mt-10 fade-in">
 
 
-<p class="mb-3">
-📍 Virginia | Serving Federal, State & Local Organizations
-</p>
+<p class="mb-3 flex items-center justify-center gap-2">
 
-
-<p class="mb-3">
-
-📧
+<svg class="w-4 h-4 text-cyan-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
 
 <a href="mailto:ayoub.boukkari@matlassolutions.com"
 class="underline hover:text-cyan-300">
@@ -1077,8 +1030,9 @@ ayoub.boukkari@matlassolutions.com
 </p>
 
 
-<p>
-📞 (571) 230-0527
+<p class="flex items-center justify-center gap-2">
+<svg class="w-4 h-4 text-cyan-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+(571) 230-0527
 </p>
 
 
@@ -1119,30 +1073,6 @@ rows="5"
 required
 class="w-full p-3 rounded border text-gray-900"></textarea>
 
-
-
-<div>
-
-<label for="contact-captcha" class="block text-sm text-gray-600 mb-1.5">
-
-Quick check: <span id="contact-captcha-question">what is 4 + 7</span>?
-
-</label>
-
-<input
-type="text"
-id="contact-captcha"
-autocomplete="off"
-required
-class="w-full p-3 rounded border text-gray-900">
-
-<p id="contact-captcha-error" class="hidden text-red-600 text-sm mt-1">
-
-That's not quite right, try again.
-
-</p>
-
-</div>
 
 
 
@@ -1309,11 +1239,6 @@ Contracting
 
 <p>
 SAM.gov Registered
-</p>
-
-
-<p>
-Virginia-Based Small Business
 </p>
 
 
@@ -1487,7 +1412,20 @@ entries.forEach(entry=>{
 if(entry.isIntersecting){
 
 
+const servicesCards =
+Array.from(document.querySelectorAll("#services .grid > div"));
+
+const cardIndex =
+servicesCards.indexOf(entry.target);
+
+const staggerDelay =
+cardIndex >= 0 ? cardIndex*100 : 0;
+
+setTimeout(()=>{
+
 entry.target.classList.add("show");
+
+},staggerDelay);
 
 
 observer.unobserve(entry.target);
@@ -1576,28 +1514,8 @@ spyObserver.observe(section);
 
 
 
-// Simple math captcha (no external service/API key needed)
-
 const form =
 document.getElementById("contact-form");
-
-let contactCaptchaAnswer;
-
-function newContactCaptcha(){
-
-const a = Math.floor(Math.random()*8)+2;
-const b = Math.floor(Math.random()*8)+2;
-
-contactCaptchaAnswer = a+b;
-
-document.getElementById("contact-captcha-question").textContent =
-"what is "+a+" + "+b;
-
-document.getElementById("contact-captcha").value = "";
-
-}
-
-newContactCaptcha();
 
 
 // Formspree Contact Form
@@ -1609,28 +1527,8 @@ form.addEventListener("submit",function(e){
 e.preventDefault();
 
 
-const captchaInput =
-document.getElementById("contact-captcha");
-
-const captchaError =
-document.getElementById("contact-captcha-error");
-
-if(parseInt(captchaInput.value,10) !== contactCaptchaAnswer){
-
-captchaError.classList.remove("hidden");
-newContactCaptcha();
-return;
-
-}
-
-captchaError.classList.add("hidden");
-
-
-
 const data =
 new FormData(form);
-
-data.delete("contact-captcha");
 
 
 
@@ -1669,7 +1567,6 @@ document
 
 
 form.reset();
-newContactCaptcha();
 
 
 }
@@ -1722,7 +1619,7 @@ alpha:true,
 antialias:true
 });
 
-renderer.setSize(520,520);
+renderer.setSize(700,700);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 
 
@@ -2150,7 +2047,7 @@ requestAnimationFrame(animate);
 
 const t = clock.getElapsedTime();
 
-globeGroup.rotation.y += 0.0032;
+globeGroup.rotation.y += 0.0026;
 starfield.rotation.y += 0.00015;
 starfieldFar.rotation.y -= 0.00008;
 
